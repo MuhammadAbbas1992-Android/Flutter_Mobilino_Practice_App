@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "365464729880",
+    "firebase_url": "https://mobilino-75052-default-rtdb.firebaseio.com",
+    "project_id": "mobilino-75052",
+    "storage_bucket": "mobilino-75052.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365464729880:android:220ea469da526b3a2f066d",
+        "android_client_info": {
+          "package_name": "com.example.mobilino"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrYBzFcxrnM5pIoCVCzJ4QVyBK8wkcNLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365464729880:android:9e6e09de0959f0a72f066d",
+        "android_client_info": {
+          "package_name": "com.example.mobilinoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrYBzFcxrnM5pIoCVCzJ4QVyBK8wkcNLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
