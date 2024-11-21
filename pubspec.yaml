@@ -73,21 +73,21 @@ flutter:
    - assets/videos/
 
 fonts:
-  - family: Dhyana-Bold
-    fonts:
-      - asset: assets/fonts/inter/Dhyana-Bold.ttf
-  - family: Inter_28pt-Bold
-    fonts:
-      - asset: assets/fonts/inter/Inter_28pt-Bold.ttf
-  - family: Inter_28pt-Medium
-    fonts:
-      - asset: assets/fonts/inter/Inter_28pt-Medium.ttf
-  - family: Inter_28pt-Regular
-    fonts:
-      - asset: assets/fonts/inter/Inter_28pt-Regular.ttf
-  - family: Inter_28pt-SemiBold
-    fonts:
-      - asset: assets/fonts/inter/Inter_28pt-SemiBold.ttf
+ - family: Dhyana-Bold
+   fonts:
+    - asset: assets/fonts/inter/Dhyana-Bold.ttf
+ - family: Inter_28pt-Bold
+   fonts:
+    - asset: assets/fonts/inter/Inter_28pt-Bold.ttf
+ - family: Inter_28pt-Medium
+   fonts:
+    - asset: assets/fonts/inter/Inter_28pt-Medium.ttf
+ - family: Inter_28pt-Regular
+   fonts:
+    - asset: assets/fonts/inter/Inter_28pt-Regular.ttf
+ - family: Inter_28pt-SemiBold
+   fonts:
+    - asset: assets/fonts/inter/Inter_28pt-SemiBold.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
