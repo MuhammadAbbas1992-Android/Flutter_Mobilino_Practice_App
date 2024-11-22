@@ -5,24 +5,25 @@ import '../../constants/app_colors.dart';
 import '../../constants/app_fonts.dart';
 
 class CustomTextWidget extends StatelessWidget {
+  final String text;
+  final double? textSize;
+  final Color? textColor;
+  final FontWeight? fontWeight;
+  final String? fontFamily;
+  final TextAlign textAlign;
+  final VoidCallback? onTap;
+
   const CustomTextWidget({
     super.key,
     required this.text,
-    this.size = 12,
-    this.color = AppColors.black,
+    this.textSize = 13,
+    this.textColor = Colors.black,
     this.fontWeight = FontWeight.normal,
     this.fontFamily = AppFonts.interRegular,
     this.textAlign = TextAlign.left,
     this.onTap,
   });
 
-  final String text;
-  final double? size;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final String? fontFamily;
-  final TextAlign textAlign;
-  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -30,8 +31,8 @@ class CustomTextWidget extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          fontSize: size,
-          color: color,
+          fontSize: textSize,
+          color: textColor,
           fontWeight: fontWeight,
           fontFamily: fontFamily,
         ),

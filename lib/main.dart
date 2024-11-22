@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobilino/res/routs/routs_app.dart';
+import 'package:mobilino/views/login/user_login_view.dart';
 import 'package:mobilino/views/splash/splash_view.dart';
 
 void main() {
@@ -19,7 +21,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashView(),
+      /*initialRoute: AppRouts.initial,
+      getPages: AppRouts.appRouts,*/
+      // home: const SplashView(),
+      home: const UserLoginView(),
     );
   }
 }
