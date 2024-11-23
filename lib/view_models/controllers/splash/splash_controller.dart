@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:mobilino/res/routs/routs_name.dart';
+
+import '../../../res/routs/routs_name.dart';
 
 class SplashServices {
   Future<void> goToNextScreen() async {

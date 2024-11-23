@@ -1,0 +1,88 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:mobilino/res/custom_widgets/custom_text_widget.dart';
+
+import '../../constants/app_colors.dart';
+import '../../utils/app_utils.dart';
+
+class CustomCartInfoWidget extends StatelessWidget {
+  const CustomCartInfoWidget({
+    super.key,
+    this.dotMenuImage,
+    required this.productIndex,
+    this.onTap,
+    this.controller,
+  });
+
+  final String? dotMenuImage;
+  final int productIndex;
+  final VoidCallback? onTap;
+  final dynamic controller;
+
+  @override
+  Widget build(BuildContext context) {
+    // ProductModel productModel = FirebaseServices.categoryList[productIndex];
+
+    return InkWell(
+      onTap: onTap,
+      child: Card(
+          elevation: 5,
+          child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () => AppUtils.selectedProduct(productIndex),
+                          child: dotMenuImage != null
+                              ? AppUtils.isUserLogin
+                                  ? SvgPicture.asset(
+                                      dotMenuImage!,
+                                      color: AppColors.white,
+                                    )
+                                  : SvgPicture.asset(
+                                      dotMenuImage!,
+                                    )
+                              : null,
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    SizedBox(
+                      height: 115,
+                      child: Image.network(
+                        controller.categoryList[productIndex].imageUrl,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    CustomTextWidget(
+                      text: controller.categoryList[productIndex].name,
+                      textSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    CustomTextWidget(
+                      text: controller.categoryList[productIndex].price,
+                      textSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ],
+                ),
+              ))),
+    );
+  }
+}

@@ -20,15 +20,16 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   final bool boarder;
   final Color boarderColor;
   final double boarderWidth;
-  final int maxLine;
+  final int? maxLine;
   final bool expandable;
+  final TextAlignVertical textAlignVertical;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
 
   const CustomTextFormFieldWidget({
     super.key,
-    required this.height,
+    this.height = 43,
     this.width = double.infinity,
     this.customLabel = '',
     this.hint = '',
@@ -44,6 +45,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     this.boarderWidth = 1,
     this.maxLine = 1,
     this.expandable = false,
+    this.textAlignVertical = TextAlignVertical.bottom,
     this.keyboardType,
     this.controller,
     this.validator,
@@ -59,7 +61,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
         validator: validator,
         obscureText: obscure,
         obscuringCharacter: obscure ? '*' : '.',
-        textAlignVertical: TextAlignVertical.top,
+        textAlignVertical: textAlignVertical,
         maxLines: maxLine, // Allows the TextField to grow with content
         expands: expandable,
         keyboardType: keyboardType,
@@ -75,7 +77,9 @@ class CustomTextFormFieldWidget extends StatelessWidget {
             fontFamily: 'inter',
             fontSize: hintSize,
           ),
-          label: Text(customLabel!),
+          label: Text(
+            customLabel!,
+          ),
           fillColor: fillColor,
           filled: true,
           enabledBorder: boarder

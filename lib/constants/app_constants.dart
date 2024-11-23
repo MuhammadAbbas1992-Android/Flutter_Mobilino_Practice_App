@@ -10,8 +10,12 @@ const String text4 =
     'My name is Nouf Aljammaz, I am an IT student with proficiency in Java, Python, JavaScript, HTML, CSS, and SQL. Passionate about programming and web development, she combines technical expertise with database management skills to excel in her field.';
 const String text5 =
     'My name is Khloud Alshahrani, I\'m currently studying for my Bachelor\'s degree in IT. I\'m particularly skillful in Java, HTML, and SQL, and I have experience in creating web pages.';
-const String homeText =
-    'Welcome to Lapmart, your go-to destination for everything related to laptops and accessories. Whether you\'re a student, professional, or gamer, we provide a curated selection of laptops, comparisons, expert reviews, and guides to help you make informed decisions.\n\nAt Lapmart, we believe in simplifying the shopping experience by offering the latest products and honest insights tailored to your unique needs. Our mission is to help you find the perfect laptop that fits your lifestyle and budget.';
+const String homeText1 =
+    'Mobilino is your go-to app for browsing and discovering the latest mobile products. Designed to provide a seamless shopping experience, Mobilino helps users explore a wide range of mobile devices, compare features, and make informed purchasing decisions—all in one place';
+const String homeText2 =
+    'Mobilino offers a range of services to enhance your mobile shopping experience. Discover top mobile brands, compare devices, read detailed reviews, and get expert recommendations. With our easy-to-use platform, you can stay updated on the latest mobile trends and find the perfect device to match your needs.';
+const String homeText3 =
+    'We believe in sustainability and aim to develop phones built for long-term use, reducing electronic waste while delivering top-notch performance. Join us on this journey towards smarter technology that meets the demands of today’s fast-paced world and keeps you connected for years to come.';
 const String contactText =
     'If you  have any inquiries get in touch with us. We will be happy to help you.';
 
