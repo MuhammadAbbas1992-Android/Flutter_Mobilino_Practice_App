@@ -42,7 +42,7 @@ class _AddProductViewState extends State<AddProductView> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: InkWell(
-              onTap: () {},
+              onTap: () => Get.back(),
               child: SvgPicture.asset(
                 'assets/icons/ic_back.svg',
                 colorFilter:
@@ -91,7 +91,7 @@ class _AddProductViewState extends State<AddProductView> {
                       CustomTextFormFieldWidget(
                         customLabel: 'Product Name',
                         boarder: true,
-                        boarderColor: AppColors.lightGrey,
+                        boarderColor: AppColors.mediumGrey,
                         controller: addProductController.nameController.value,
                         validator: (value) =>
                             AppUtils.validateFieldData(value, 'Product Name'),
@@ -102,7 +102,7 @@ class _AddProductViewState extends State<AddProductView> {
                       CustomTextFormFieldWidget(
                         customLabel: 'Price',
                         boarder: true,
-                        boarderColor: AppColors.lightGrey,
+                        boarderColor: AppColors.mediumGrey,
                         controller: addProductController.priceController.value,
                         validator: (value) =>
                             AppUtils.validateFieldData(value, 'Price'),
@@ -124,7 +124,7 @@ class _AddProductViewState extends State<AddProductView> {
                         maxLine: null,
                         expandable: true,
                         textAlignVertical: TextAlignVertical.top,
-                        boarderColor: AppColors.lightGrey,
+                        boarderColor: AppColors.mediumGrey,
                         controller:
                             addProductController.descriptionController.value,
                         validator: (value) =>
@@ -139,7 +139,7 @@ class _AddProductViewState extends State<AddProductView> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: AppColors.lightGrey, width: 1),
+                                color: AppColors.mediumGrey, width: 1),
                             borderRadius: BorderRadius.circular(6.0),
                           ),
                           child: addProductController.imageUrl.isEmpty &&
@@ -180,11 +180,11 @@ class _AddProductViewState extends State<AddProductView> {
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 30,
                       ),
                       CustomTextButtonWidget(
                         buttonText: 'ADD',
-                        fillColor: AppColors.lightGrey,
+                        fillColor: AppColors.mediumGrey,
                         fontWeight: FontWeight.bold,
                         width: 150,
                         onTap: () => _formKey.currentState!.validate()

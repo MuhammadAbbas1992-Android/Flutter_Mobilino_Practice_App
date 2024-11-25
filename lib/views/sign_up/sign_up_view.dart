@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:mobilino/view_models/controllers/sing_up/sign_up_controller.dart';
 
 import '../../constants/app_colors.dart';
 import '../../constants/app_fonts.dart';
@@ -21,8 +22,8 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUpView> {
-  // final loginController = Get.put(LoginController());
-  final controllers = List.generate(2, (index) => TextEditingController());
+  final signUpController = Get.put(SignUpController());
+  // final controllers = List.generate(2, (index) => TextEditingController());
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -77,8 +78,8 @@ class _SignUpState extends State<SignUpView> {
                     height: 43,
                     customLabel: 'Email',
                     boarder: true,
-                    boarderColor: AppColors.lightGrey,
-                    controller: controllers[0],
+                    boarderColor: AppColors.mediumGrey,
+                    controller: signUpController.emailController.value,
                     validator: (value) => AppUtils.validateEmail(value),
                   ),
                   const SizedBox(
@@ -88,8 +89,8 @@ class _SignUpState extends State<SignUpView> {
                     height: 43,
                     customLabel: 'Password',
                     boarder: true,
-                    boarderColor: AppColors.lightGrey,
-                    controller: controllers[1],
+                    boarderColor: AppColors.mediumGrey,
+                    controller: signUpController.passwordController.value,
                     validator: (value) => AppUtils.validatePassword(value),
                   ),
                   const SizedBox(
@@ -99,20 +100,22 @@ class _SignUpState extends State<SignUpView> {
                     height: 43,
                     customLabel: 'Confirm Password',
                     boarder: true,
-                    boarderColor: AppColors.lightGrey,
-                    controller: controllers[1],
-                    validator: (value) => AppUtils.validatePassword(value),
+                    boarderColor: AppColors.mediumGrey,
+                    controller:
+                        signUpController.confirmPasswordController.value,
+                    validator: (value) => AppUtils.validateConfirmPassword(
+                        value, signUpController.passwordController.value.text),
                   ),
                   const SizedBox(
                     height: 50,
                   ),
                   CustomTextButtonWidget(
                     buttonText: 'Sign up',
-                    fillColor: AppColors.lightGrey,
+                    fillColor: AppColors.mediumGrey,
                     fontWeight: FontWeight.bold,
                     width: 200,
                     onTap: () => _formKey.currentState!.validate()
-                        ? Get.offAndToNamed(RoutsName.homeView)
+                        ? signUpController.signUpUser()
                         : null,
                   ),
                   const SizedBox(
@@ -125,7 +128,7 @@ class _SignUpState extends State<SignUpView> {
                     textLink: 'Log In',
                     textLinkColor: AppColors.black,
                     textLinkSize: 10,
-                    onTap: () {},
+                    onTap: () => Get.toNamed(RoutsName.userLoginView),
                   ),
                 ],
               ),

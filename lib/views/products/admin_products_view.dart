@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mobilino/constants/app_colors.dart';
 import 'package:mobilino/res/custom_widgets/custom_text_widget.dart';
+import 'package:mobilino/res/routs/routs_name.dart';
 
 import '../../res/custom_widgets/custom_drop_down_widget.dart';
 import '../../res/custom_widgets/custom_header-widget.dart';
@@ -20,6 +21,13 @@ class AdminProductsView extends StatefulWidget {
 
 class _AdminProductsViewState extends State<AdminProductsView> {
   final adminProductsController = Get.put(AdminProductsController());
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    adminProductsController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +60,7 @@ class _AdminProductsViewState extends State<AdminProductsView> {
           Padding(
             padding: const EdgeInsets.only(right: 30),
             child: InkWell(
-              onTap: () => Get.to(() => NavBarView()),
+              onTap: () => Get.toNamed(RoutsName.addProductView),
               child: SvgPicture.asset(
                 'assets/icons/ic_more.svg',
               ),
@@ -105,7 +113,7 @@ class _AdminProductsViewState extends State<AdminProductsView> {
                 } else {
                   return Expanded(
                       child: ProductListViewWidget(
-                    dotMenuImage: 'assets/icons/ic_dot_menu.svg',
+                    deleteIcon: 'assets/icons/ic_delete.svg',
                     adminProductsController: adminProductsController,
                   ));
                 }

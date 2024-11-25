@@ -54,9 +54,9 @@ class _SplashViewState extends State<SplashView> {
           const Padding(
             padding: EdgeInsets.all(20.0),
             child: CustomTextWidget(
-              text: text1,
+              text: splashText,
               textSize: 16,
-              textColor: AppColors.mediumGrey,
+              textColor: AppColors.moderateGrey,
               textAlign: TextAlign.center,
             ),
           ),

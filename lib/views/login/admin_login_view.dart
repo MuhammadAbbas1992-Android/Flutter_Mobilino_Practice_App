@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:mobilino/view_models/controllers/login/login_controller.dart';
 
 import '../../constants/app_colors.dart';
 import '../../constants/app_fonts.dart';
@@ -21,8 +22,8 @@ class AdminLoginView extends StatefulWidget {
 }
 
 class _AdminLoginState extends State<AdminLoginView> {
-  // final loginController = Get.put(LoginController());
-  final controllers = List.generate(2, (index) => TextEditingController());
+  final controller = Get.put(LoginController());
+  // final controllers = List.generate(2, (index) => TextEditingController());
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -77,8 +78,8 @@ class _AdminLoginState extends State<AdminLoginView> {
                     height: 43,
                     customLabel: 'Username',
                     boarder: true,
-                    boarderColor: AppColors.lightGrey,
-                    controller: controllers[0],
+                    boarderColor: AppColors.mediumGrey,
+                    controller: controller.emailController.value,
                     validator: (value) => AppUtils.validateEmail(value),
                   ),
                   const SizedBox(
@@ -88,8 +89,8 @@ class _AdminLoginState extends State<AdminLoginView> {
                     height: 43,
                     customLabel: 'Password',
                     boarder: true,
-                    boarderColor: AppColors.lightGrey,
-                    controller: controllers[1],
+                    boarderColor: AppColors.mediumGrey,
+                    controller: controller.passwordController.value,
                     validator: (value) => AppUtils.validatePassword(value),
                   ),
                   const SizedBox(
@@ -97,11 +98,11 @@ class _AdminLoginState extends State<AdminLoginView> {
                   ),
                   CustomTextButtonWidget(
                     buttonText: 'Log In',
-                    fillColor: AppColors.lightGrey,
+                    fillColor: AppColors.mediumGrey,
                     fontWeight: FontWeight.bold,
                     width: 200,
                     onTap: () => _formKey.currentState!.validate()
-                        ? Get.offAndToNamed(RoutsName.homeView)
+                        ? controller.loginUser()
                         : null,
                   ),
                 ],

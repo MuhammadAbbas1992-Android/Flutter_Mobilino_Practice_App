@@ -12,6 +12,7 @@ import '../../constants/app_colors.dart';
 import '../../constants/app_fonts.dart';
 import '../../res/custom_widgets/custom_text_widget.dart';
 import '../../res/routs/routs_name.dart';
+import '../../view_models/controllers/login/login_controller.dart';
 
 class UserLoginView extends StatefulWidget {
   const UserLoginView({super.key});
@@ -21,8 +22,8 @@ class UserLoginView extends StatefulWidget {
 }
 
 class _UserLoginState extends State<UserLoginView> {
-  // final loginController = Get.put(LoginController());
-  final controllers = List.generate(2, (index) => TextEditingController());
+  final loginController = Get.put(LoginController());
+  // final controllers = List.generate(2, (index) => TextEditingController());
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -77,8 +78,8 @@ class _UserLoginState extends State<UserLoginView> {
                     height: 43,
                     customLabel: 'Email',
                     boarder: true,
-                    boarderColor: AppColors.lightGrey,
-                    controller: controllers[0],
+                    boarderColor: AppColors.mediumGrey,
+                    controller: loginController.emailController.value,
                     validator: (value) => AppUtils.validateEmail(value),
                   ),
                   const SizedBox(
@@ -88,8 +89,8 @@ class _UserLoginState extends State<UserLoginView> {
                     height: 43,
                     customLabel: 'Password',
                     boarder: true,
-                    boarderColor: AppColors.lightGrey,
-                    controller: controllers[1],
+                    boarderColor: AppColors.mediumGrey,
+                    controller: loginController.passwordController.value,
                     validator: (value) => AppUtils.validatePassword(value),
                   ),
                   const SizedBox(
@@ -97,11 +98,11 @@ class _UserLoginState extends State<UserLoginView> {
                   ),
                   CustomTextButtonWidget(
                     buttonText: 'Log In',
-                    fillColor: AppColors.lightGrey,
+                    fillColor: AppColors.mediumGrey,
                     fontWeight: FontWeight.bold,
                     width: 200,
                     onTap: () => _formKey.currentState!.validate()
-                        ? Get.offAndToNamed(RoutsName.homeView)
+                        ? loginController.loginUser()
                         : null,
                   ),
                   const SizedBox(
@@ -114,16 +115,17 @@ class _UserLoginState extends State<UserLoginView> {
                     textLink: 'Sign up',
                     textLinkColor: AppColors.black,
                     textLinkSize: 10,
-                    onTap: () {},
+                    onTap: () => Get.toNamed(RoutsName.signUpView),
                   ),
                   const SizedBox(
                     height: 40,
                   ),
-                  const CustomTextButtonWidget(
+                  CustomTextButtonWidget(
                     buttonText: 'Log In As Admin',
-                    fillColor: AppColors.lightGrey,
+                    fillColor: AppColors.mediumGrey,
                     fontWeight: FontWeight.bold,
                     width: 200,
+                    onTap: () => Get.toNamed(RoutsName.adminLoginView),
                   ),
                 ],
               ),

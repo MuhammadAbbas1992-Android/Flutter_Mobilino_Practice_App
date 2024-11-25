@@ -13,7 +13,7 @@ class AdminProductsController extends GetxController {
       ['Samsung', 'Apple', 'Realme', 'OPPO', 'Huawei'].obs;
 
   AdminProductsController() {
-    // loadProductsData();
+    loadProductsData();
   }
 
   Future<void> loadProductsData() async {
@@ -23,7 +23,6 @@ class AdminProductsController extends GetxController {
         AppUtils.list = <ProductModel>[];
         categoryList.value = FirebaseServices.productList;
         AppUtils.list.addAll(categoryList);
-
         isLoading.value = !isLoading.value;
       },
     ).onError(

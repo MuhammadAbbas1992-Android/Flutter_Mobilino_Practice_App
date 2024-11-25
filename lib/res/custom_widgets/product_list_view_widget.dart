@@ -9,11 +9,11 @@ class ProductListViewWidget extends StatelessWidget {
   // final homeAdminController = Get.put(HomeAdminController());
   const ProductListViewWidget({
     super.key,
-    this.dotMenuImage,
+    this.deleteIcon,
     this.adminProductsController,
     this.userProductsController,
   });
-  final String? dotMenuImage;
+  final String? deleteIcon;
   final AdminProductsController? adminProductsController;
   final UserProductsController? userProductsController;
 
@@ -24,14 +24,15 @@ class ProductListViewWidget extends StatelessWidget {
           crossAxisCount: 2,
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
-          mainAxisExtent: 210),
+          // mainAxisExtent: 300,
+          childAspectRatio: 2 / 3),
       itemCount: AppUtils.isUserLogin
           ? userProductsController?.categoryList.length
           : adminProductsController?.categoryList.length,
       itemBuilder: (context, index) {
         return CustomCartInfoWidget(
           productIndex: index,
-          dotMenuImage: dotMenuImage,
+          deleteIcon: deleteIcon,
           onTap: AppUtils.isUserLogin
               ? () => AppUtils.selectedProductDetail(index)
               : null,

@@ -9,13 +9,13 @@ import '../../utils/app_utils.dart';
 class CustomCartInfoWidget extends StatelessWidget {
   const CustomCartInfoWidget({
     super.key,
-    this.dotMenuImage,
+    this.deleteIcon,
     required this.productIndex,
     this.onTap,
     this.controller,
   });
 
-  final String? dotMenuImage;
+  final String? deleteIcon;
   final int productIndex;
   final VoidCallback? onTap;
   final dynamic controller;
@@ -43,14 +43,14 @@ class CustomCartInfoWidget extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () => AppUtils.selectedProduct(productIndex),
-                          child: dotMenuImage != null
+                          child: deleteIcon != null
                               ? AppUtils.isUserLogin
                                   ? SvgPicture.asset(
-                                      dotMenuImage!,
+                                      deleteIcon!,
                                       color: AppColors.white,
                                     )
                                   : SvgPicture.asset(
-                                      dotMenuImage!,
+                                      deleteIcon!,
                                     )
                               : null,
                         )

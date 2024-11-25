@@ -24,7 +24,7 @@ class CustomDropDownWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       decoration: BoxDecoration(
         color: AppColors.white,
-        border: Border.all(color: AppColors.lightGrey, width: 1),
+        border: Border.all(color: AppColors.mediumGrey, width: 1),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: DropdownButtonHideUnderline(
@@ -67,7 +67,7 @@ class CustomDropDownWidget extends StatelessWidget {
                 adminProductsController!.selectedCategory.value = newValue!;
               }
             },
-            dropdownColor: AppColors.lightGrey,
+            dropdownColor: AppColors.mediumGrey,
             style: const TextStyle(
               fontSize: 15,
               color: AppColors.black,

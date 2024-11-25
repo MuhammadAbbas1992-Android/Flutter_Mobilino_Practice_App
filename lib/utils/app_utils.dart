@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../constants/app_constants.dart';
 import '../models/product_model.dart';
 import '../res/routs/routs_name.dart';
+import '../view_models/services/shared_prefrences/shared_preferences_services.dart';
 
 class AppUtils {
   static String userEmailKey = '';
@@ -18,18 +20,18 @@ class AppUtils {
     print("ABC User Email Username: $userEmailKey");
   }
 
-  /*static toggleUserLoginStatus(String user) async {
-    if (user == 'admin@gmail.com') {
+  static toggleUserLoginStatus(String user) async {
+    if (user == 'admin123@gmail.com') {
       isUserLogin = false;
       await SharedPreferenceServices.saveToSharedPref(userKey, user);
-      Get.offNamed(RoutsName.homeAdminView);
+      Get.offNamed(RoutsName.adminProductsView);
     } else {
       isUserLogin = true;
       AppUtils.extractEmailPart(user);
       await SharedPreferenceServices.saveToSharedPref(userKey, user);
       Get.offNamed(RoutsName.homeView);
     }
-  }*/
+  }
 
   static selectedProduct(int index) {
     productIndex = index;
@@ -97,10 +99,10 @@ class AppUtils {
     Get.offNamed(pageName);
   }
 
-  /*static void logout() {
+  static void logout() {
     userEmailKey = '';
     isUserLogin = false;
     SharedPreferenceServices.clearFromSharedPref(userKey);
-    navigatePage(RoutsName.loginView);
-  }*/
+    Get.toNamed(RoutsName.userLoginView);
+  }
 }

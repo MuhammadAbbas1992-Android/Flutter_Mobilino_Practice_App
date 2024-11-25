@@ -41,13 +41,13 @@ class AddProductController extends GetxController {
   }
 
   Future<void> addProduct() async {
-    if (imagePath.value.isEmpty && imageUrl.value.isEmpty) {
-      AppUtils.mySnackBar(
-          title: 'Alert', message: 'Please add image of product');
-      return;
-    } else if (selectedOption.value == 'Choose Brand') {
+    if (selectedOption.value == 'Category') {
       AppUtils.mySnackBar(
           title: 'Alert', message: 'Please select an option from dropdown');
+      return;
+    } else if (imagePath.value.isEmpty && imageUrl.value.isEmpty) {
+      AppUtils.mySnackBar(
+          title: 'Alert', message: 'Please add image of product');
       return;
     } else {
       uploadImage();
@@ -93,7 +93,7 @@ class AddProductController extends GetxController {
             title: 'Success', message: 'Product details updated successfully');
 
         clearData();
-        Get.offNamed('');
+        Get.toNamed(RoutsName.adminProductsView);
       } else {
         AppUtils.mySnackBar(
             title: 'Error', message: 'Product details failed to updated');
@@ -112,7 +112,7 @@ class AddProductController extends GetxController {
         AppUtils.mySnackBar(
             title: 'Success', message: 'Product details added successfully');
         clearData();
-        Get.toNamed('');
+        Get.toNamed(RoutsName.adminProductsView);
       } else {
         AppUtils.mySnackBar(
             title: 'Error', message: 'Product details failed to add');

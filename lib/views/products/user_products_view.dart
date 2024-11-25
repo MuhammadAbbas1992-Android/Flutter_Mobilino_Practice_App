@@ -130,7 +130,7 @@ class _UserProductsState extends State<UserProductsView> {
                 } else {
                   return Expanded(
                       child: ProductListViewWidget(
-                    dotMenuImage: 'assets/icons/ic_dot_menu.svg',
+                    deleteIcon: 'assets/icons/ic_dot_menu.svg',
                     userProductsController: userProductsController,
                   ));
                 }

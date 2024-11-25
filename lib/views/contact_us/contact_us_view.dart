@@ -83,7 +83,7 @@ class _ContactUsState extends State<ContactUsView> {
               text: 'Jumana@gmail.com',
               textColor: AppColors.black,
               icon: 'assets/icons/ic_mail.svg',
-              iconColor: AppColors.lightGrey,
+              iconColor: AppColors.mediumGrey,
               iconRightPadding: 10,
             ),
             SizedBox(
@@ -93,7 +93,7 @@ class _ContactUsState extends State<ContactUsView> {
               text: 'Jumana Yassin Aladani',
               textColor: AppColors.black,
               icon: 'assets/icons/ic_facebook.svg',
-              iconColor: AppColors.lightGrey,
+              iconColor: AppColors.mediumGrey,
               iconRightPadding: 12,
             ),
             SizedBox(
@@ -111,7 +111,7 @@ class _ContactUsState extends State<ContactUsView> {
               text: 'Fatima@gmail.com',
               textColor: AppColors.black,
               icon: 'assets/icons/ic_mail.svg',
-              iconColor: AppColors.lightGrey,
+              iconColor: AppColors.mediumGrey,
               iconRightPadding: 10,
             ),
             SizedBox(
@@ -121,7 +121,7 @@ class _ContactUsState extends State<ContactUsView> {
               text: 'Fatima Hamad Almuhamidh',
               textColor: AppColors.black,
               icon: 'assets/icons/ic_facebook.svg',
-              iconColor: AppColors.lightGrey,
+              iconColor: AppColors.mediumGrey,
               iconRightPadding: 12,
             ),
             SizedBox(
@@ -139,7 +139,7 @@ class _ContactUsState extends State<ContactUsView> {
               text: 'Yasmin@gmail.com',
               textColor: AppColors.black,
               icon: 'assets/icons/ic_mail.svg',
-              iconColor: AppColors.lightGrey,
+              iconColor: AppColors.mediumGrey,
               iconRightPadding: 10,
             ),
             SizedBox(
@@ -149,7 +149,7 @@ class _ContactUsState extends State<ContactUsView> {
               text: 'Yasmin Lafi Alotaibi ',
               textColor: AppColors.black,
               icon: 'assets/icons/ic_facebook.svg',
-              iconColor: AppColors.lightGrey,
+              iconColor: AppColors.mediumGrey,
               iconRightPadding: 12,
             ),
             SizedBox(
@@ -167,7 +167,7 @@ class _ContactUsState extends State<ContactUsView> {
               text: 'Shahad@gmail.com',
               textColor: AppColors.black,
               icon: 'assets/icons/ic_mail.svg',
-              iconColor: AppColors.lightGrey,
+              iconColor: AppColors.mediumGrey,
               iconRightPadding: 10,
             ),
             SizedBox(
@@ -177,7 +177,7 @@ class _ContactUsState extends State<ContactUsView> {
               text: 'Shahad Zaben Alotaibi',
               textColor: AppColors.black,
               icon: 'assets/icons/ic_facebook.svg',
-              iconColor: AppColors.lightGrey,
+              iconColor: AppColors.mediumGrey,
               iconRightPadding: 12,
             ),
           ],

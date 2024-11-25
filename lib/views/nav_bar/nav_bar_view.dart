@@ -17,14 +17,14 @@ class NavBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightGrey,
+      backgroundColor: AppColors.mediumGrey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: AppColors.lightGrey,
+        backgroundColor: AppColors.mediumGrey,
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: InkWell(
-              onTap: () {},
+              onTap: () => Get.back(),
               child: SvgPicture.asset('assets/icons/ic_back.svg')),
         ),
         leadingWidth: 35,
@@ -48,12 +48,13 @@ class NavBarView extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () => AppUtils.navigatePage(RoutsName.homeView),
-                child: const CustomIconTextWidget(
+                child: CustomIconTextWidget(
                   icon: 'assets/icons/ic_home.svg',
                   iconColor: AppColors.white,
                   iconRightPadding: 10,
                   text: 'Home',
                   textColor: AppColors.white,
+                  onTap: () => Get.toNamed(RoutsName.homeView),
                 ),
               ),
               const SizedBox(
@@ -61,12 +62,13 @@ class NavBarView extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => AppUtils.navigatePage(RoutsName.homeView),
-                child: const CustomIconTextWidget(
+                child: CustomIconTextWidget(
                   icon: 'assets/icons/ic_product.svg',
                   iconColor: AppColors.white,
                   iconRightPadding: 10,
                   text: 'Products',
                   textColor: AppColors.white,
+                  onTap: () => Get.toNamed(RoutsName.productsDetailView),
                 ),
               ),
               const SizedBox(
@@ -74,12 +76,13 @@ class NavBarView extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => AppUtils.navigatePage(RoutsName.homeView),
-                child: const CustomIconTextWidget(
+                child: CustomIconTextWidget(
                   icon: 'assets/icons/ic_cart.svg',
                   iconColor: AppColors.white,
                   iconRightPadding: 10,
                   text: 'Cart',
                   textColor: AppColors.white,
+                  onTap: () => Get.toNamed(RoutsName.cartView),
                 ),
               ),
               const SizedBox(
@@ -87,12 +90,13 @@ class NavBarView extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => AppUtils.navigatePage(RoutsName.homeView),
-                child: const CustomIconTextWidget(
+                child: CustomIconTextWidget(
                   icon: 'assets/icons/ic_about_us.svg',
                   iconColor: AppColors.white,
                   iconRightPadding: 10,
                   text: 'About us',
                   textColor: AppColors.white,
+                  onTap: () => Get.toNamed(RoutsName.aboutUsView),
                 ),
               ),
               const SizedBox(
@@ -100,22 +104,24 @@ class NavBarView extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => AppUtils.navigatePage(RoutsName.homeView),
-                child: const CustomIconTextWidget(
+                child: CustomIconTextWidget(
                   icon: 'assets/icons/ic_phone.svg',
                   iconColor: AppColors.white,
                   iconRightPadding: 10,
                   text: 'Contact us',
                   textColor: AppColors.white,
+                  onTap: () => Get.toNamed(RoutsName.contactUsView),
                 ),
               ),
               const Spacer(),
               CustomTextButtonWidget(
-                  buttonText: 'Sign Out',
-                  textColor: AppColors.lightGrey,
-                  fillColor: AppColors.white,
-                  fontWeight: FontWeight.bold,
-                  width: 200,
-                  onTap: () {}),
+                buttonText: 'Sign Out',
+                textColor: AppColors.mediumGrey,
+                fillColor: AppColors.white,
+                fontWeight: FontWeight.bold,
+                width: 200,
+                onTap: () => AppUtils.logout(),
+              ),
               const SizedBox(
                 height: 40,
               )
