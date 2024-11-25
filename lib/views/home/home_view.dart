@@ -33,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.only(right: 30),
+            padding: const EdgeInsets.only(right: 20),
             child: InkWell(
               onTap: () => Get.to(() => NavBarView()),
               child: SvgPicture.asset(

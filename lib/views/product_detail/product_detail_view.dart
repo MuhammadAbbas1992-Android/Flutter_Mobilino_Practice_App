@@ -38,7 +38,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
       appBar: AppBar(
         backgroundColor: AppColors.white,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 30),
+          padding: const EdgeInsets.only(left: 20),
           child: InkWell(
               onTap: () {},
               child: SvgPicture.asset(
@@ -47,7 +47,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
               )),
         ),
-        leadingWidth: 43,
+        leadingWidth: 35,
         actions: [
           const SizedBox(width: 50),
           const Spacer(),
@@ -61,7 +61,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           ),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.only(right: 30),
+            padding: const EdgeInsets.only(right: 20),
             child: InkWell(
               onTap: () => Get.to(() => const NavBarView()),
               child: SvgPicture.asset(
@@ -72,66 +72,88 @@ class _ProductDetailViewState extends State<ProductDetailView> {
         ],
       ),
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(
-              height: 10.0,
+          child: Column(
+        children: [
+          const SizedBox(
+            height: 10.0,
+          ),
+          const CommonImageWidget(
+            image: 'assets/images/detail.png',
+            height: 400,
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                CustomTextWidget(
+                  text: productDetailController.productModel.name,
+                  textSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  textAlign: TextAlign.left,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 60,
+                  child: SingleChildScrollView(
+                    child: CustomTextWidget(
+                      text: productDetailController.productModel.description,
+                      textSize: 14,
+                      textAlign: TextAlign.justify,
+                      lineSpacing: 1,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const CustomTextWidget(
+                      text: 'Quantity',
+                      textSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    QuantityCounterWidget(),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const CustomTextWidget(
+                      text: 'Price',
+                      textSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    CustomTextWidget(
+                      text: '\$${productDetailController.productModel.price}',
+                      textSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ],
+                ),
+              ],
             ),
-            const CommonImageWidget(
-              image: 'assets/images/detail.png',
-              height: 228,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            CustomTextWidget(
-              text: productDetailController.productModel.name,
-              textSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomTextWidget(
-              text: 'SAR ${productDetailController.productModel.price}',
-              textSize: 15,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            QuantityCounterWidget(),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomTextWidget(
-              text: 'Description',
-              textSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const SizedBox(
-              height: 120,
-              child: SingleChildScrollView(
-                child: CustomTextWidget(
-                    text: description,
-                    textSize: 14,
-                    textAlign: TextAlign.justify),
-              ),
-            ),
-            const Spacer(),
-            CustomTextButtonWidget(
-              buttonText: 'Add to Cart',
-              onTap: () => productDetailController.uploadCart(),
-            ),
-            const Spacer()
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTextButtonWidget(
+            buttonText: 'Add to Cart',
+            width: 150,
+            fillColor: AppColors.mediumGrey,
+            onTap: () => productDetailController.uploadCart(),
+          ),
+        ],
       )),
     );
   }

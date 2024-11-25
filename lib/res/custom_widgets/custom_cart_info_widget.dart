@@ -30,7 +30,7 @@ class CustomCartInfoWidget extends StatelessWidget {
           elevation: 5,
           child: Container(
               decoration: BoxDecoration(
-                color: AppColors.white,
+                color: AppColors.lightOrange,
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Padding(
@@ -59,8 +59,9 @@ class CustomCartInfoWidget extends StatelessWidget {
                     const SizedBox(
                       height: 2,
                     ),
-                    SizedBox(
+                    Container(
                       height: 115,
+                      color: AppColors.lightOrange,
                       child: Image.network(
                         controller.categoryList[productIndex].imageUrl,
                         fit: BoxFit.fill,

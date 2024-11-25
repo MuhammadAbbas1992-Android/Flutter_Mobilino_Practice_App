@@ -16,8 +16,6 @@ const String homeText2 =
     'Mobilino offers a range of services to enhance your mobile shopping experience. Discover top mobile brands, compare devices, read detailed reviews, and get expert recommendations. With our easy-to-use platform, you can stay updated on the latest mobile trends and find the perfect device to match your needs.';
 const String homeText3 =
     'We believe in sustainability and aim to develop phones built for long-term use, reducing electronic waste while delivering top-notch performance. Join us on this journey towards smarter technology that meets the demands of today’s fast-paced world and keeps you connected for years to come.';
-const String description =
-    'The iPhone 13 Pro Max features a 6.7-inch Super Retina XDR display with ProMotion for a smooth experience. Powered by the A15 Bionic chip, it delivers exceptional performance and efficiency.';
 const String splashText =
     'Your gateway to effortless mobile shopping, where every purchase is just a tap away!';
 const String userKey = 'USER';

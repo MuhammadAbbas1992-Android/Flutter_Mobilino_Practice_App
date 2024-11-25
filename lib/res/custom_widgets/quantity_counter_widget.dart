@@ -13,37 +13,33 @@ class QuantityCounterWidget extends StatelessWidget {
   final productDetailCounter = Get.put(ProductDetailController());
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 40,
+      width: 120,
+      decoration: BoxDecoration(
+          color: AppColors.lightOrange,
+          border: Border.all(width: 1, color: AppColors.light),
+          borderRadius: BorderRadius.circular(50)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           InkWell(
             onTap: () => productDetailCounter.decrementCounter(),
-            child: Container(
-                height: double.infinity,
-                decoration: const BoxDecoration(
-                    color: AppColors.black,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(20))),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Icon(Icons.remove),
-                )),
-          ),
-          Container(
-            width: 1,
-            color: AppColors.lightGrey,
+            child: const Icon(Icons.remove),
           ),
           Container(
             height: double.infinity,
-            color: AppColors.black,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-              child: Obx(
-                () => Text(
+            width: 40,
+            decoration: const BoxDecoration(
+                color: AppColors.white,
+                border: Border.symmetric(
+                    vertical: BorderSide(
+                  width: 1,
+                  color: AppColors.light,
+                ))),
+            child: Obx(
+              () => Center(
+                child: Text(
                   productDetailCounter.counter.value.toString(),
                   style: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold),
@@ -51,23 +47,9 @@ class QuantityCounterWidget extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            width: 1,
-            color: AppColors.lightGrey,
-          ),
           InkWell(
             onTap: () => productDetailCounter.incrementCounter(),
-            child: Container(
-                height: double.infinity,
-                decoration: const BoxDecoration(
-                    color: AppColors.black,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        bottomRight: Radius.circular(20))),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Icon(Icons.add),
-                )),
+            child: const Icon(Icons.add),
           ),
         ],
       ),

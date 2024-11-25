@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../utils/app_utils.dart';
 
 class LoginController extends GetxController {
-  final emailController = TextEditingController(text: 'admin123@gmail.com').obs;
+  final emailController = TextEditingController(text: 'abc123@gmail.com').obs;
   final passwordController = TextEditingController(text: '123456').obs;
 
   bool showSpinner = false;

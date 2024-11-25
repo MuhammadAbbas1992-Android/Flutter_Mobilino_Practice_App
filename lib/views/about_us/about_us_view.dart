@@ -25,7 +25,7 @@ class _AboutUsState extends State<AboutUsView> {
       appBar: AppBar(
         backgroundColor: AppColors.white,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 30),
+          padding: const EdgeInsets.only(left: 20),
           child: InkWell(
               onTap: () {},
               child: SvgPicture.asset(
@@ -34,7 +34,7 @@ class _AboutUsState extends State<AboutUsView> {
                     const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
               )),
         ),
-        leadingWidth: 43,
+        leadingWidth: 35,
         actions: [
           const SizedBox(width: 50),
           const Spacer(),
@@ -48,7 +48,7 @@ class _AboutUsState extends State<AboutUsView> {
           ),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.only(right: 30),
+            padding: const EdgeInsets.only(right: 20),
             child: InkWell(
               onTap: () => Get.to(() => NavBarView()),
               child: SvgPicture.asset(

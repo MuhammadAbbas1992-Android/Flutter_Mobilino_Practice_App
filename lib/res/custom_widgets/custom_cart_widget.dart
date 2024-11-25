@@ -26,17 +26,22 @@ class CustomCartWidget extends StatelessWidget {
       margin: const EdgeInsets.only(top: 10),
       height: 140.0,
       decoration: BoxDecoration(
-          color: AppColors.black, borderRadius: BorderRadius.circular(20.0)),
+          border: Border.all(color: AppColors.light),
+          borderRadius: BorderRadius.circular(6.0)),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
           children: [
             Container(
               height: 100,
-              width: 110,
+              width: 100,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15.0)),
+              child: Image.network(
+                cartModel.url,
+                fit: BoxFit.fill,
+              ),
             ),
             Expanded(
               flex: 8,
@@ -52,18 +57,36 @@ class CustomCartWidget extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    CustomTextWidget(
-                      text: 'SAR ${cartModel.price}',
-                      textSize: 12.0,
-                      fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const CustomTextWidget(
+                          text: 'Price',
+                          textSize: 12.0,
+                        ),
+                        CustomTextWidget(
+                          text: '\$${cartModel.price}',
+                          textSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    CustomTextWidget(
-                      text: 'Qty: ${cartModel.quantity}',
-                      textSize: 12.0,
-                      fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const CustomTextWidget(
+                          text: 'Quantity',
+                          textSize: 12.0,
+                        ),
+                        CustomTextWidget(
+                          text: cartModel.quantity,
+                          textSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
                     )
                   ],
                 ),
@@ -76,8 +99,8 @@ class CustomCartWidget extends StatelessWidget {
               child: SizedBox(
                 height: double.infinity,
                 child: SvgPicture.asset(
-                  'assets/icons/ic_delete.svg',
-                  alignment: const Alignment(0, .9),
+                  'assets/icons/ic_close.svg',
+                  alignment: Alignment.topRight,
                 ),
               ),
             )

@@ -43,7 +43,7 @@ class ProductDetailController extends GetxController {
         AppUtils.mySnackBar(
             title: 'Success', message: 'Cart added successfully');
         counter.value = 0;
-        // Get.offNamed(RoutsName.productsView);
+        Get.toNamed(RoutsName.userProductsView);
         // Get.offNamed(RoutsName.productsView);
       } else {
         print('ABC 12');

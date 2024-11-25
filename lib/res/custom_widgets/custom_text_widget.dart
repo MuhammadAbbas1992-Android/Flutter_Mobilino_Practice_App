@@ -11,6 +11,7 @@ class CustomTextWidget extends StatelessWidget {
   final FontWeight? fontWeight;
   final String? fontFamily;
   final TextAlign textAlign;
+  final double? lineSpacing;
   final VoidCallback? onTap;
 
   const CustomTextWidget({
@@ -21,6 +22,7 @@ class CustomTextWidget extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.fontFamily = AppFonts.interRegular,
     this.textAlign = TextAlign.left,
+    this.lineSpacing,
     this.onTap,
   });
 
@@ -31,11 +33,11 @@ class CustomTextWidget extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          fontSize: textSize,
-          color: textColor,
-          fontWeight: fontWeight,
-          fontFamily: fontFamily,
-        ),
+            fontSize: textSize,
+            color: textColor,
+            fontWeight: fontWeight,
+            fontFamily: fontFamily,
+            height: lineSpacing),
         textAlign: textAlign,
       ),
     );

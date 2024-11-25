@@ -14,12 +14,9 @@ class CommonImageWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: height,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Image.asset(
-          image,
-          fit: BoxFit.cover,
-        ),
+      child: Image.asset(
+        image,
+        fit: BoxFit.cover,
       ),
     );
   }

@@ -43,7 +43,7 @@ class NavBarView extends StatelessWidget {
       body: SafeArea(
           child: SizedBox(
         child: Padding(
-          padding: const EdgeInsets.all(30),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               InkWell(
@@ -68,7 +68,7 @@ class NavBarView extends StatelessWidget {
                   iconRightPadding: 10,
                   text: 'Products',
                   textColor: AppColors.white,
-                  onTap: () => Get.toNamed(RoutsName.productsDetailView),
+                  onTap: () => Get.toNamed(RoutsName.userProductsView),
                 ),
               ),
               const SizedBox(
