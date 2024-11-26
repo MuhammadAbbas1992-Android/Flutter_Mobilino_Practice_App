@@ -182,15 +182,21 @@ class _AddProductViewState extends State<AddProductView> {
                       const SizedBox(
                         height: 30,
                       ),
-                      CustomTextButtonWidget(
-                        buttonText: 'ADD',
-                        fillColor: AppColors.mediumGrey,
-                        fontWeight: FontWeight.bold,
-                        width: 150,
-                        onTap: () => _formKey.currentState!.validate()
-                            ? addProductController.addProduct()
-                            : null,
-                      ),
+                      Obx(
+                        () => addProductController.loading.value
+                            ? const CircularProgressIndicator(
+                                color: AppColors.mediumGrey,
+                              )
+                            : CustomTextButtonWidget(
+                                buttonText: 'ADD',
+                                fillColor: AppColors.mediumGrey,
+                                fontWeight: FontWeight.bold,
+                                width: 150,
+                                onTap: () => _formKey.currentState!.validate()
+                                    ? addProductController.addProduct()
+                                    : null,
+                              ),
+                      )
                     ],
                   ),
                 )

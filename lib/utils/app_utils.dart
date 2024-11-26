@@ -16,8 +16,6 @@ class AppUtils {
   static extractEmailPart(String email) {
     // Split the email using '@' as the delimiter
     userEmailKey = email.split('@')[0];
-
-    print("ABC User Email Username: $userEmailKey");
   }
 
   static toggleUserLoginStatus(String user) async {
@@ -36,11 +34,6 @@ class AppUtils {
   static selectedProduct(int index) {
     productIndex = index;
     Get.offNamed(RoutsName.addProductView);
-  }
-
-  static selectedProductDetail(int index) {
-    productIndex = index;
-    Get.toNamed(RoutsName.productsDetailView);
   }
 
   static String? validateEmail(String? email) {

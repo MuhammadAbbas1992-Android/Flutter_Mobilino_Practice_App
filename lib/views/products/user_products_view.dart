@@ -47,7 +47,7 @@ class _UserProductsState extends State<UserProductsView> {
         leadingWidth: 35,
         actions: [
           const SizedBox(width: 50),
-          Spacer(),
+          const Spacer(),
           const CustomHeaderWidget(
             text: 'Products',
             textSize: 18,

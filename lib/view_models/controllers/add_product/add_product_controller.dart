@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -16,7 +17,7 @@ class AddProductController extends GetxController {
 
   RxString imageUrl = ''.obs;
   RxString imagePath = ''.obs;
-  bool showSpinner = false;
+  RxBool loading = false.obs;
   RxString selectedOption = 'Category'.obs;
   final List<String> options =
       ['Category', 'Samsung', 'Apple', 'Realme', 'OPPO', 'Huawei'].obs;
@@ -55,23 +56,19 @@ class AddProductController extends GetxController {
   }
 
   Future<void> uploadImage() async {
-    //Each time it will work as u choose a new image from gallary
+    //Each time it will work as u choose a new image from gallery
+    loading.value = true;
+
     if (imagePath.value.isNotEmpty) {
-      try {
-        // Create a reference to Firebase Storage
-        final storageRef = FirebaseStorage.instance
-            .ref()
-            .child('Images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+      imageUrl.value =
+          await FirebaseServices.uploadImageToStorage(imagePath.value);
 
-        // Upload the image file
-        await storageRef.putFile(File(imagePath.value));
-
-        // Get the download URL
-        imageUrl.value = await storageRef.getDownloadURL();
+      if (imageUrl.value.isNotEmpty) {
         uploadProduct();
-      } catch (e) {
+      } else {
+        loading.value = false;
         AppUtils.mySnackBar(
-            title: 'Error uploading image', message: e.toString());
+            title: 'Error', message: 'Failed to upload product image');
       }
     } else {
       uploadProduct();
@@ -91,15 +88,17 @@ class AddProductController extends GetxController {
       if (await FirebaseServices.updateProduct(productModel)) {
         AppUtils.mySnackBar(
             title: 'Success', message: 'Product details updated successfully');
-
         clearData();
+        loading.value = false;
         Get.toNamed(RoutsName.adminProductsView);
       } else {
+        loading.value = false;
         AppUtils.mySnackBar(
             title: 'Error', message: 'Product details failed to updated');
       }
     } else {
       //Add new product
+      loading.value = false;
       ProductModel productModel = ProductModel(
           imageUrl: imageUrl.value,
           id: '',
@@ -109,11 +108,13 @@ class AddProductController extends GetxController {
           description: descriptionController.value.text);
 
       if (await FirebaseServices.addProduct(productModel)) {
+        loading.value = false;
         AppUtils.mySnackBar(
             title: 'Success', message: 'Product details added successfully');
         clearData();
         Get.toNamed(RoutsName.adminProductsView);
       } else {
+        loading.value = false;
         AppUtils.mySnackBar(
             title: 'Error', message: 'Product details failed to add');
       }

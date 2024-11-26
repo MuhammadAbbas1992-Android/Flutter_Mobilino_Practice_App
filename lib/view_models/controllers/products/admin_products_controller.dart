@@ -34,6 +34,32 @@ class AdminProductsController extends GetxController {
     );
   }
 
+  deleteAdminProduct(int index) async {
+    isLoading.value = !isLoading.value;
+    ProductModel productModel = categoryList[index];
+    String imagePath = productModel.imageUrl;
+
+    if (await FirebaseServices.deleteImageFromStorage(imagePath)) {
+      if (await FirebaseServices.deleteProduct(productModel.id)) {
+        //remove product form categoryList
+        categoryList.remove(productModel);
+        //remove product form productList
+        FirebaseServices.productList.remove(productModel);
+        AppUtils.mySnackBar(
+            title: 'Alert', message: 'Product deleted successfully');
+        isLoading.value = !isLoading.value;
+      } else {
+        AppUtils.mySnackBar(
+            title: 'Alert', message: 'Failed to delete product');
+        isLoading.value = !isLoading.value;
+      }
+    } else {
+      AppUtils.mySnackBar(
+          title: 'Alert', message: 'Failed to delete product image');
+      isLoading.value = !isLoading.value;
+    }
+  }
+
   void getCategory(String category) {
     isLoading.value = !isLoading.value;
 

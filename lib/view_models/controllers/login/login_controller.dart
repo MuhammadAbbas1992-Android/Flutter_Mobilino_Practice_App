@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import '../../../utils/app_utils.dart';
 
 class LoginController extends GetxController {
-  final emailController = TextEditingController(text: 'abc123@gmail.com').obs;
+  final emailController = TextEditingController(text: 'admin123@gmail.com').obs;
   final passwordController = TextEditingController(text: '123456').obs;
 
-  bool showSpinner = false;
+  RxBool loading = false.obs;
   late FirebaseAuth _auth;
 
   LoginController() {
@@ -16,12 +16,9 @@ class LoginController extends GetxController {
     _auth = FirebaseAuth.instance;
   }
 
-  RxBool loading = false.obs;
-
-  void validateEmail() {}
-
   void loginUser() async {
     try {
+      loading.value = true;
       UserCredential newUser = await _auth.signInWithEmailAndPassword(
         email: emailController.value.text,
         password: passwordController.value.text,
@@ -31,11 +28,12 @@ class LoginController extends GetxController {
           title: 'Response',
           message: 'Login successfully',
         );
+        loading.value = false;
         AppUtils.toggleUserLoginStatus(emailController.value.text);
       }
     } on FirebaseAuthException catch (e) {
       String errorMessage = '';
-
+      loading.value = false;
       // Check the error code and set specific messages
       switch (e.code) {
         case 'user-not-found':
@@ -63,6 +61,7 @@ class LoginController extends GetxController {
       );
     } catch (e) {
       // Catch any other errors that are not FirebaseAuthException
+      loading.value = false;
       AppUtils.mySnackBar(
         title: 'Error',
         message: 'An error occurred: ${e.toString()}',

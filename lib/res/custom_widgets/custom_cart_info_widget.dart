@@ -42,7 +42,8 @@ class CustomCartInfoWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         InkWell(
-                          onTap: () => AppUtils.selectedProduct(productIndex),
+                          // onTap: () => AppUtils.selectedProduct(productIndex),
+                          onTap: () {},
                           child: deleteIcon != null
                               ? AppUtils.isUserLogin
                                   ? SvgPicture.asset(

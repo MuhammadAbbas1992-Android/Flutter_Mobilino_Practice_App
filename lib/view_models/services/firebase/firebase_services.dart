@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../../models/cart_model.dart';
 import '../../../models/product_model.dart';
@@ -9,6 +12,37 @@ class FirebaseServices {
 
   static List<ProductModel> productList = <ProductModel>[];
   static List<CartModel> cartList = <CartModel>[];
+
+  static Future<String> uploadImageToStorage(String image) async {
+    try {
+      // Create a reference to Firebase Storage
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('Images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+
+      // Upload the image file
+      await storageRef.putFile(File(image));
+
+      // Get the download URL
+      String imageUrl = await storageRef.getDownloadURL();
+      return imageUrl;
+    } catch (e) {
+      return '';
+    }
+  }
+
+  static Future<bool> deleteImageFromStorage(String imagePath) async {
+    try {
+      // Create a reference to the file to delete
+      final storageRef = FirebaseStorage.instance.ref().child(imagePath);
+
+      // Delete the file
+      await storageRef.delete();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 
   // Retrieve all product items from Firebase
   static Future<void> getProducts() async {
@@ -39,6 +73,17 @@ class FirebaseServices {
       final productRef = databaseReference.child('Products').push();
       productModel.id = productRef.key!; // Assign generated ID to cart object
       await productRef.set(productModel.toJson());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  static Future<bool> deleteProduct(String id) async {
+    final DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
+
+    try {
+      await databaseReference.child('Products').child(id).remove();
       return true;
     } catch (e) {
       return false;

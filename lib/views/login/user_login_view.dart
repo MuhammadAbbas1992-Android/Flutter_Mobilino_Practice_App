@@ -96,14 +96,20 @@ class _UserLoginState extends State<UserLoginView> {
                   const SizedBox(
                     height: 50,
                   ),
-                  CustomTextButtonWidget(
-                    buttonText: 'Log In',
-                    fillColor: AppColors.mediumGrey,
-                    fontWeight: FontWeight.bold,
-                    width: 200,
-                    onTap: () => _formKey.currentState!.validate()
-                        ? loginController.loginUser()
-                        : null,
+                  Obx(
+                    () => loginController.loading.value
+                        ? const CircularProgressIndicator(
+                            color: AppColors.mediumGrey,
+                          )
+                        : CustomTextButtonWidget(
+                            buttonText: 'Log In',
+                            fillColor: AppColors.mediumGrey,
+                            fontWeight: FontWeight.bold,
+                            width: 200,
+                            onTap: () => _formKey.currentState!.validate()
+                                ? loginController.loginUser()
+                                : null,
+                          ),
                   ),
                   const SizedBox(
                     height: 10,

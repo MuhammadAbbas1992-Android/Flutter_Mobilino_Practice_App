@@ -34,7 +34,7 @@ class ProductListViewWidget extends StatelessWidget {
           productIndex: index,
           deleteIcon: deleteIcon,
           onTap: AppUtils.isUserLogin
-              ? () => AppUtils.selectedProductDetail(index)
+              ? () => adminProductsController?.deleteAdminProduct(index)
               : null,
           controller: AppUtils.isUserLogin
               ? userProductsController

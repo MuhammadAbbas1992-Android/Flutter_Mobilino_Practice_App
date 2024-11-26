@@ -96,15 +96,21 @@ class _AdminLoginState extends State<AdminLoginView> {
                   const SizedBox(
                     height: 50,
                   ),
-                  CustomTextButtonWidget(
-                    buttonText: 'Log In',
-                    fillColor: AppColors.mediumGrey,
-                    fontWeight: FontWeight.bold,
-                    width: 200,
-                    onTap: () => _formKey.currentState!.validate()
-                        ? controller.loginUser()
-                        : null,
-                  ),
+                  Obx(
+                    () => controller.loading.value
+                        ? const CircularProgressIndicator(
+                            color: AppColors.mediumGrey,
+                          )
+                        : CustomTextButtonWidget(
+                            buttonText: 'Log In',
+                            fillColor: AppColors.mediumGrey,
+                            fontWeight: FontWeight.bold,
+                            width: 200,
+                            onTap: () => _formKey.currentState!.validate()
+                                ? controller.loginUser()
+                                : null,
+                          ),
+                  )
                 ],
               ),
             ),

@@ -109,14 +109,20 @@ class _SignUpState extends State<SignUpView> {
                   const SizedBox(
                     height: 50,
                   ),
-                  CustomTextButtonWidget(
-                    buttonText: 'Sign up',
-                    fillColor: AppColors.mediumGrey,
-                    fontWeight: FontWeight.bold,
-                    width: 200,
-                    onTap: () => _formKey.currentState!.validate()
-                        ? signUpController.signUpUser()
-                        : null,
+                  Obx(
+                    () => signUpController.loading.value
+                        ? const CircularProgressIndicator(
+                            color: AppColors.mediumGrey,
+                          )
+                        : CustomTextButtonWidget(
+                            buttonText: 'Sign up',
+                            fillColor: AppColors.mediumGrey,
+                            fontWeight: FontWeight.bold,
+                            width: 200,
+                            onTap: () => _formKey.currentState!.validate()
+                                ? signUpController.signUpUser()
+                                : null,
+                          ),
                   ),
                   const SizedBox(
                     height: 10,
