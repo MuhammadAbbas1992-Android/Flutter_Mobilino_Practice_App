@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mobilino/res/custom_widgets/custom_text_widget.dart';
+import 'package:mobilino/utils/app_utils.dart';
 import 'package:mobilino/view_models/controllers/products/user_products_controller.dart';
 
 import '../../constants/app_colors.dart';
@@ -89,9 +90,6 @@ class _UserProductsState extends State<UserProductsView> {
                             category,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              /*fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,*/
                             ),
                           ),
                           if (isSelected)
