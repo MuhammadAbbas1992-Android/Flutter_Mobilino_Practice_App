@@ -23,7 +23,6 @@ class CartView extends StatefulWidget {
 
 class _CartViewState extends State<CartView> {
   final cartController = Get.put(CartController());
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void dispose() {
@@ -127,7 +126,7 @@ class _CartViewState extends State<CartView> {
               buttonText: 'Order',
               fillColor: AppColors.mediumGrey,
               width: 150,
-              onTap: () => cartController.clearCartList(),
+              onTap: () => cartController.makeCartOrder(context),
             )
           ],
         ),

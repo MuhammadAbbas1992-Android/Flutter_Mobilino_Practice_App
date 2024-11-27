@@ -5,6 +5,8 @@ import 'package:mobilino/res/custom_widgets/custom_text_widget.dart';
 
 import '../../constants/app_colors.dart';
 import '../../utils/app_utils.dart';
+import '../../view_models/controllers/products/admin_products_controller.dart';
+import '../../view_models/controllers/products/user_products_controller.dart';
 
 class CustomCartInfoWidget extends StatelessWidget {
   const CustomCartInfoWidget({
@@ -12,14 +14,15 @@ class CustomCartInfoWidget extends StatelessWidget {
     this.deleteIcon,
     required this.productIndex,
     this.onTap,
-    this.controller,
+    this.adminProductsController,
+    this.userProductsController,
   });
 
   final String? deleteIcon;
   final int productIndex;
   final VoidCallback? onTap;
-  final dynamic controller;
-
+  final AdminProductsController? adminProductsController;
+  final UserProductsController? userProductsController;
   @override
   Widget build(BuildContext context) {
     // ProductModel productModel = FirebaseServices.categoryList[productIndex];
@@ -42,8 +45,10 @@ class CustomCartInfoWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         InkWell(
-                          // onTap: () => AppUtils.selectedProduct(productIndex),
-                          onTap: () {},
+                          onTap: () => deleteIcon != null
+                              ? adminProductsController
+                                  ?.deleteAdminProduct(productIndex)
+                              : null,
                           child: deleteIcon != null
                               ? AppUtils.isUserLogin
                                   ? SvgPicture.asset(
@@ -61,16 +66,23 @@ class CustomCartInfoWidget extends StatelessWidget {
                       height: 2,
                     ),
                     Container(
-                      height: 115,
-                      color: AppColors.lightOrange,
-                      child: Image.network(
-                        controller.categoryList[productIndex].imageUrl,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                        height: 115,
+                        color: AppColors.lightOrange,
+                        child: Image.network(
+                          AppUtils.isUserLogin
+                              ? userProductsController!
+                                  .userCategoryList[productIndex].imageUrl
+                              : adminProductsController!
+                                  .adminCategoryList[productIndex].imageUrl,
+                          fit: BoxFit.fill,
+                        )),
                     const SizedBox(height: 8),
                     CustomTextWidget(
-                      text: controller.categoryList[productIndex].name,
+                      text: AppUtils.isUserLogin
+                          ? userProductsController!
+                              .userCategoryList[productIndex].name
+                          : adminProductsController!
+                              .adminCategoryList[productIndex].name,
                       textSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -78,7 +90,11 @@ class CustomCartInfoWidget extends StatelessWidget {
                       height: 4,
                     ),
                     CustomTextWidget(
-                      text: controller.categoryList[productIndex].price,
+                      text: AppUtils.isUserLogin
+                          ? userProductsController!
+                              .userCategoryList[productIndex].price
+                          : adminProductsController!
+                              .adminCategoryList[productIndex].price,
                       textSize: 12,
                       fontWeight: FontWeight.bold,
                     ),

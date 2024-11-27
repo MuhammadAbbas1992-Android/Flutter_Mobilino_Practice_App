@@ -23,7 +23,7 @@ class AddProductController extends GetxController {
       ['Category', 'Samsung', 'Apple', 'Realme', 'OPPO', 'Huawei'].obs;
 
   AddProductController() {
-    AppUtils.isAddProductList = true;
+    AppUtils.isAddProductView = true;
   }
 
   Future getImage() async {
@@ -38,7 +38,6 @@ class AddProductController extends GetxController {
       //Get File from Gallery or Camera
       // imagePath = File(image.path);
     }
-    AppUtils.mySnackBar(title: "Image Path", message: imagePath.value);
   }
 
   Future<void> addProduct() async {
@@ -46,7 +45,7 @@ class AddProductController extends GetxController {
       AppUtils.mySnackBar(
           title: 'Alert', message: 'Please select an option from dropdown');
       return;
-    } else if (imagePath.value.isEmpty && imageUrl.value.isEmpty) {
+    } else if (imagePath.value.isEmpty) {
       AppUtils.mySnackBar(
           title: 'Alert', message: 'Please add image of product');
       return;
@@ -58,75 +57,45 @@ class AddProductController extends GetxController {
   Future<void> uploadImage() async {
     //Each time it will work as u choose a new image from gallery
     loading.value = true;
+    imageUrl.value =
+        await FirebaseServices.uploadImageToStorage(imagePath.value);
 
-    if (imagePath.value.isNotEmpty) {
-      imageUrl.value =
-          await FirebaseServices.uploadImageToStorage(imagePath.value);
-
-      if (imageUrl.value.isNotEmpty) {
-        uploadProduct();
-      } else {
-        loading.value = false;
-        AppUtils.mySnackBar(
-            title: 'Error', message: 'Failed to upload product image');
-      }
-    } else {
+    if (imageUrl.value.isNotEmpty) {
       uploadProduct();
+    } else {
+      loading.value = false;
+      AppUtils.mySnackBar(
+          title: 'Error', message: 'Failed to upload product image');
     }
   }
 
   Future<void> uploadProduct() async {
-    if (AppUtils.productIndex >= 0) {
-      //Update existing product
-      ProductModel productModel = AppUtils.list[AppUtils.productIndex];
-      productModel.imageUrl = imageUrl.value;
-      productModel.category = selectedOption.value;
-      productModel.name = nameController.value.text;
-      productModel.price = priceController.value.text;
-      productModel.description = descriptionController.value.text;
+    //Add new product
+    ProductModel productModel = ProductModel(
+        imageUrl: imageUrl.value,
+        id: '',
+        category: selectedOption.value,
+        name: nameController.value.text,
+        price: priceController.value.text,
+        description: descriptionController.value.text);
 
-      if (await FirebaseServices.updateProduct(productModel)) {
-        AppUtils.mySnackBar(
-            title: 'Success', message: 'Product details updated successfully');
-        clearData();
-        loading.value = false;
-        Get.toNamed(RoutsName.adminProductsView);
-      } else {
-        loading.value = false;
-        AppUtils.mySnackBar(
-            title: 'Error', message: 'Product details failed to updated');
-      }
-    } else {
-      //Add new product
+    if (await FirebaseServices.addProduct(productModel)) {
+      AppUtils.mySnackBar(
+          title: 'Success', message: 'Product details added successfully');
+      clearData();
       loading.value = false;
-      ProductModel productModel = ProductModel(
-          imageUrl: imageUrl.value,
-          id: '',
-          category: selectedOption.value,
-          name: nameController.value.text,
-          price: priceController.value.text,
-          description: descriptionController.value.text);
-
-      if (await FirebaseServices.addProduct(productModel)) {
-        loading.value = false;
-        AppUtils.mySnackBar(
-            title: 'Success', message: 'Product details added successfully');
-        clearData();
-        Get.toNamed(RoutsName.adminProductsView);
-      } else {
-        loading.value = false;
-        AppUtils.mySnackBar(
-            title: 'Error', message: 'Product details failed to add');
-      }
+      Get.toNamed(RoutsName.adminProductsView);
+    } else {
+      loading.value = false;
+      AppUtils.mySnackBar(
+          title: 'Error', message: 'Product details failed to add');
     }
   }
 
   void clearData() {
-    AppUtils.productIndex = -1;
-    AppUtils.isAddProductList = false;
+    AppUtils.isAddProductView = false;
     imagePath.value = '';
     imageUrl.value = '';
-    selectedOption.value = 'Category';
     nameController.value.text = '';
     priceController.value.text = '';
     descriptionController.value.text = '';

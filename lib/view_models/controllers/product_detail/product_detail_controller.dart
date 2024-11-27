@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
@@ -11,6 +14,7 @@ import '../../services/firebase/firebase_services.dart';
 
 class ProductDetailController extends GetxController {
   RxInt counter = 0.obs;
+  RxBool loading = false.obs;
   late ProductModel productModel;
 
   ProductDetailController() {
@@ -19,18 +23,17 @@ class ProductDetailController extends GetxController {
 
   void incrementCounter() {
     ++counter.value;
-    print('ABC Counter ${counter.value}');
   }
 
   void decrementCounter() {
     if (counter.value > 0) {
       --counter.value;
     }
-    print('ABC Counter ${counter.value}');
   }
 
   Future<void> uploadCart() async {
     if (counter.value > 0) {
+      loading.value = true;
       CartModel cartModel = CartModel(
           id: '',
           url: productModel.imageUrl,
@@ -39,14 +42,14 @@ class ProductDetailController extends GetxController {
           quantity: counter.value.toString());
 
       if (await FirebaseServices.addCart(cartModel)) {
-        print('ABC 11');
+        loading.value = false;
         AppUtils.mySnackBar(
             title: 'Success', message: 'Cart added successfully');
         counter.value = 0;
         Get.toNamed(RoutsName.userProductsView);
         // Get.offNamed(RoutsName.productsView);
       } else {
-        print('ABC 12');
+        loading.value = false;
         AppUtils.mySnackBar(title: 'Error', message: 'Failed to add cart');
       }
     } else {

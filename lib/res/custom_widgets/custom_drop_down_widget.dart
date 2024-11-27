@@ -21,7 +21,7 @@ class CustomDropDownWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
         color: AppColors.white,
         border: Border.all(color: AppColors.mediumGrey, width: 1),
@@ -31,20 +31,22 @@ class CustomDropDownWidget extends StatelessWidget {
         child: Obx(() {
           return DropdownButton<String>(
             hint: CustomTextWidget(
-              text: AppUtils.isAddProductList
+              text: AppUtils.isAddProductView
                   ? addProductController!.selectedOption.value
                   : adminProductsController!.selectedCategory.value,
-              textColor: AppColors.black,
-              fontWeight: FontWeight.w500,
+              textColor:
+                  AppUtils.isAddProductView ? AppColors.grey : AppColors.black,
+              textSize: 18,
             ),
             icon: const Icon(Icons.keyboard_arrow_down_sharp),
             isExpanded: true,
-            items: AppUtils.isAddProductList
+            items: AppUtils.isAddProductView
                 ? addProductController?.options.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: CustomTextWidget(
                         text: value,
+                        textSize: 10,
                         textColor: AppColors.white,
                         fontWeight: FontWeight.normal,
                       ),
@@ -61,7 +63,7 @@ class CustomDropDownWidget extends StatelessWidget {
                     );
                   }).toList(),
             onChanged: (String? newValue) {
-              if (AppUtils.isAddProductList) {
+              if (AppUtils.isAddProductView) {
                 addProductController!.selectedOption.value = newValue!;
               } else {
                 adminProductsController!.selectedCategory.value = newValue!;

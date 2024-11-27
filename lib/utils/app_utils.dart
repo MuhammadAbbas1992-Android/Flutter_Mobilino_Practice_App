@@ -9,7 +9,7 @@ import '../view_models/services/shared_prefrences/shared_preferences_services.da
 class AppUtils {
   static String userEmailKey = '';
   static bool isUserLogin = false;
-  static bool isAddProductList = false;
+  static bool isAddProductView = false;
   static int productIndex = -1;
   static List<ProductModel> list = <ProductModel>[];
 
@@ -31,9 +31,9 @@ class AppUtils {
     }
   }
 
-  static selectedProduct(int index) {
+  static selectedProductDetail(int index) {
     productIndex = index;
-    Get.offNamed(RoutsName.addProductView);
+    Get.toNamed(RoutsName.productsDetailView);
   }
 
   static String? validateEmail(String? email) {
@@ -93,6 +93,7 @@ class AppUtils {
   }
 
   static void logout() {
+    mySnackBar(title: 'Message', message: 'Yor sign out successfully');
     userEmailKey = '';
     isUserLogin = false;
     SharedPreferenceServices.clearFromSharedPref(userKey);

@@ -25,6 +25,12 @@ class _UserLoginState extends State<UserLoginView> {
   final loginController = Get.put(LoginController());
   // final controllers = List.generate(2, (index) => TextEditingController());
   final _formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    loginController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -77,9 +77,10 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           const SizedBox(
             height: 10.0,
           ),
-          const CommonImageWidget(
-            image: 'assets/images/detail.png',
-            height: 400,
+          Image.network(
+            productDetailController.productModel.imageUrl,
+            width: double.infinity,
+            height: 380,
           ),
           const SizedBox(
             height: 10.0,
@@ -124,7 +125,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   ],
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,11 +148,17 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           const SizedBox(
             height: 20,
           ),
-          CustomTextButtonWidget(
-            buttonText: 'Add to Cart',
-            width: 150,
-            fillColor: AppColors.mediumGrey,
-            onTap: () => productDetailController.uploadCart(),
+          Obx(
+            () => productDetailController.loading.value
+                ? const CircularProgressIndicator(
+                    color: AppColors.mediumGrey,
+                  )
+                : CustomTextButtonWidget(
+                    buttonText: 'Add to Cart',
+                    width: 150,
+                    fillColor: AppColors.mediumGrey,
+                    onTap: () => productDetailController.uploadCart(),
+                  ),
           ),
         ],
       )),

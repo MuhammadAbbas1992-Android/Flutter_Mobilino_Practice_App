@@ -33,13 +33,16 @@ class FirebaseServices {
 
   static Future<bool> deleteImageFromStorage(String imagePath) async {
     try {
+      print('deleteImageFromStorage 1 $imagePath');
       // Create a reference to the file to delete
       final storageRef = FirebaseStorage.instance.ref().child(imagePath);
-
+      print('deleteImageFromStorage 2 $imagePath');
       // Delete the file
       await storageRef.delete();
+      print('deleteImageFromStorage 3 $imagePath');
       return true;
     } catch (e) {
+      print('deleteImageFromStorage 4');
       return false;
     }
   }

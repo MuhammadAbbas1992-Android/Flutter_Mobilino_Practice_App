@@ -87,7 +87,7 @@ class _UserProductsState extends State<UserProductsView> {
                         children: [
                           Text(
                             category,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               /*fontWeight: isSelected
                                   ? FontWeight.bold
@@ -124,13 +124,13 @@ class _UserProductsState extends State<UserProductsView> {
                           )),
                     ),
                   );
-                } else if (userProductsController.categoryList.isEmpty) {
+                } else if (userProductsController.userCategoryList.isEmpty) {
                   return const Expanded(
                       child: Center(child: Text('No product available')));
                 } else {
                   return Expanded(
                       child: ProductListViewWidget(
-                    deleteIcon: 'assets/icons/ic_dot_menu.svg',
+                    deleteIcon: 'assets/icons/ic_delete.svg',
                     userProductsController: userProductsController,
                   ));
                 }

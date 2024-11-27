@@ -7,22 +7,22 @@ import '../../services/firebase/firebase_services.dart';
 class AdminProductsController extends GetxController {
   // Observable RxBool for loading status
   RxBool isLoading = true.obs;
-  RxList<ProductModel> categoryList = <ProductModel>[].obs;
-  RxString selectedCategory = 'Samsung'.obs;
+  RxList<ProductModel> adminCategoryList = <ProductModel>[].obs;
+  RxString selectedCategory = 'Category'.obs;
   final List<String> options =
-      ['Samsung', 'Apple', 'Realme', 'OPPO', 'Huawei'].obs;
+      ['Category', 'All', 'Samsung', 'Apple', 'Realme', 'OPPO', 'Huawei'].obs;
 
   AdminProductsController() {
     loadProductsData();
   }
 
   Future<void> loadProductsData() async {
-    AppUtils.productIndex = -1;
     await FirebaseServices.getProducts().then(
       (value) {
         AppUtils.list = <ProductModel>[];
-        categoryList.value = FirebaseServices.productList;
-        AppUtils.list.addAll(categoryList);
+        adminCategoryList.value = <ProductModel>[];
+        adminCategoryList.value = FirebaseServices.productList;
+        AppUtils.list.addAll(adminCategoryList);
         isLoading.value = !isLoading.value;
       },
     ).onError(
@@ -34,42 +34,42 @@ class AdminProductsController extends GetxController {
     );
   }
 
-  deleteAdminProduct(int index) async {
+  void deleteAdminProduct(int index) async {
     isLoading.value = !isLoading.value;
-    ProductModel productModel = categoryList[index];
+    ProductModel productModel = adminCategoryList[index];
     String imagePath = productModel.imageUrl;
 
-    if (await FirebaseServices.deleteImageFromStorage(imagePath)) {
-      if (await FirebaseServices.deleteProduct(productModel.id)) {
-        //remove product form categoryList
-        categoryList.remove(productModel);
-        //remove product form productList
-        FirebaseServices.productList.remove(productModel);
-        AppUtils.mySnackBar(
-            title: 'Alert', message: 'Product deleted successfully');
-        isLoading.value = !isLoading.value;
-      } else {
-        AppUtils.mySnackBar(
-            title: 'Alert', message: 'Failed to delete product');
-        isLoading.value = !isLoading.value;
-      }
+    if (await FirebaseServices.deleteProduct(productModel.id)) {
+      //remove product form categoryList
+      adminCategoryList.remove(productModel);
+      //remove product form productList
+      FirebaseServices.productList.remove(productModel);
+      AppUtils.mySnackBar(
+          title: 'Alert', message: 'Product deleted successfully');
+      isLoading.value = !isLoading.value;
+    } else {
+      AppUtils.mySnackBar(title: 'Alert', message: 'Failed to delete product');
+      isLoading.value = !isLoading.value;
+    }
+    /*if (await FirebaseServices.deleteImageFromStorage(imagePath)) {
+
     } else {
       AppUtils.mySnackBar(
           title: 'Alert', message: 'Failed to delete product image');
       isLoading.value = !isLoading.value;
-    }
+    }*/
   }
 
   void getCategory(String category) {
     isLoading.value = !isLoading.value;
 
     AppUtils.list = <ProductModel>[];
-    categoryList.value = <ProductModel>[];
+    adminCategoryList.value = <ProductModel>[];
 
     for (var product in FirebaseServices.productList) {
       if (product.category == category) {
-        categoryList.add(product);
-        AppUtils.list.addAll(categoryList);
+        adminCategoryList.add(product);
+        AppUtils.list.addAll(adminCategoryList);
       }
     }
     isLoading.value = !isLoading.value;

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobilino/constants/app_colors.dart';
 import 'package:mobilino/res/custom_widgets/custom_text_widget.dart';
 import 'package:mobilino/res/routs/routs_name.dart';
+import 'package:mobilino/utils/app_utils.dart';
 
 import '../../res/custom_widgets/custom_drop_down_widget.dart';
 import '../../res/custom_widgets/custom_header-widget.dart';
@@ -38,9 +39,9 @@ class _AdminProductsViewState extends State<AdminProductsView> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 30),
           child: InkWell(
-              onTap: () {},
+              onTap: () => AppUtils.logout(),
               child: SvgPicture.asset(
-                'assets/icons/ic_back.svg',
+                'assets/icons/ic_sign_out.svg',
                 colorFilter:
                     const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
               )),
@@ -107,7 +108,7 @@ class _AdminProductsViewState extends State<AdminProductsView> {
                           )),
                     ),
                   );
-                } else if (adminProductsController.categoryList.isEmpty) {
+                } else if (adminProductsController.adminCategoryList.isEmpty) {
                   return const Expanded(
                       child: Center(child: Text('No product available')));
                 } else {
