@@ -18,7 +18,7 @@ class ProductDetailController extends GetxController {
   late ProductModel productModel;
 
   ProductDetailController() {
-    productModel = AppUtils.list[AppUtils.productIndex];
+    productModel = FirebaseServices.productList[AppUtils.productIndex];
   }
 
   void incrementCounter() {

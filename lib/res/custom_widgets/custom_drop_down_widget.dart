@@ -66,6 +66,7 @@ class CustomDropDownWidget extends StatelessWidget {
                 addProductController!.selectedOption.value = newValue!;
               } else {
                 adminProductsController!.selectedCategory.value = newValue!;
+                adminProductsController?.getCategory();
               }
             },
             dropdownColor: AppColors.mediumGrey,

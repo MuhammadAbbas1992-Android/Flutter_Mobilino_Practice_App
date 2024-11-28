@@ -26,10 +26,9 @@ class UserProductsController extends GetxController {
     AppUtils.productIndex = -1;
     await FirebaseServices.getProducts().then(
       (value) {
-        AppUtils.list = <ProductModel>[];
+        // AppUtils.list = <ProductModel>[];
         userCategoryList.value = FirebaseServices.productList;
-        AppUtils.list.addAll(userCategoryList);
-
+        // AppUtils.list.addAll(userCategoryList);
         isLoading.value = !isLoading.value;
       },
     ).onError(
@@ -44,13 +43,13 @@ class UserProductsController extends GetxController {
   void getCategory(String category) {
     isLoading.value = !isLoading.value;
 
-    AppUtils.list = <ProductModel>[];
+    // AppUtils.list = <ProductModel>[];
     userCategoryList.value = <ProductModel>[];
 
     for (var product in FirebaseServices.productList) {
       if (product.category == category) {
         userCategoryList.add(product);
-        AppUtils.list.addAll(userCategoryList);
+        // AppUtils.list.addAll(userCategoryList);
       }
     }
     isLoading.value = !isLoading.value;

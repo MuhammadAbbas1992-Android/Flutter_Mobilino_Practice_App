@@ -26,10 +26,10 @@ class AdminProductsController extends GetxController {
   Future<void> loadProductsData() async {
     await FirebaseServices.getProducts().then(
       (value) {
-        AppUtils.list = <ProductModel>[];
+        // AppUtils.list = <ProductModel>[];
         adminCategoryList.value = <ProductModel>[];
         adminCategoryList.value = FirebaseServices.productList;
-        AppUtils.list.addAll(adminCategoryList);
+        // AppUtils.list.addAll(adminCategoryList);
         isLoading.value = !isLoading.value;
       },
     ).onError(
@@ -67,18 +67,29 @@ class AdminProductsController extends GetxController {
     }*/
   }
 
-  void getCategory(String category) {
+  void getCategory() {
     isLoading.value = !isLoading.value;
-
-    AppUtils.list = <ProductModel>[];
+    // AppUtils.list = <ProductModel>[];
     adminCategoryList.value = <ProductModel>[];
 
-    for (var product in FirebaseServices.productList) {
-      if (product.category == category) {
-        adminCategoryList.add(product);
-        AppUtils.list.addAll(adminCategoryList);
+    if (selectedCategory.value == 'Category' ||
+        selectedCategory.value == 'All') {
+      adminCategoryList.value = FirebaseServices.productList;
+      // AppUtils.list.addAll(adminCategoryList);
+    } else {
+      for (var product in FirebaseServices.productList) {
+        if (product.category == selectedCategory.value) {
+          adminCategoryList.add(product);
+        }
       }
+      if (adminCategoryList.isEmpty) {
+        AppUtils.mySnackBar(
+            title: 'Message',
+            message: 'No ${selectedCategory.value} product available');
+      }
+      // AppUtils.list.addAll(adminCategoryList);
     }
+
     isLoading.value = !isLoading.value;
   }
 }

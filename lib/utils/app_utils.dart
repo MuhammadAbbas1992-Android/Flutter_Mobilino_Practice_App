@@ -11,7 +11,7 @@ class AppUtils {
   static bool isUserLogin = false;
   static bool isAddProductView = false;
   static int productIndex = -1;
-  static List<ProductModel> list = <ProductModel>[];
+  // static List<ProductModel> list = <ProductModel>[];
 
   static extractEmailPart(String email) {
     // Split the email using '@' as the delimiter
