@@ -23,14 +23,20 @@ class CartController extends GetxController {
   }
 
   Future<void> loadCarts() async {
-    print('before ABC Called LoadCarts() ${FirebaseServices.cartList.length}');
     await FirebaseServices.getCarts().then(
       (value) {
-        print(
-            'after ABC Called LoadCarts() ${FirebaseServices.cartList.length}');
         sumGrandTotalPayment();
       },
     );
+  }
+
+  void sumGrandTotalPayment() {
+    grandTotalPayment.value = 0.0;
+    for (var cart in FirebaseServices.cartList) {
+      double amount = double.parse(cart.price) * int.parse(cart.quantity);
+      grandTotalPayment.value = grandTotalPayment.value + amount;
+    }
+    isCartLoading.value = !isCartLoading.value;
   }
 
   Future<void> removeCart(String cartIndex) async {
@@ -59,16 +65,6 @@ class CartController extends GetxController {
         AppUtils.mySnackBar(title: 'Error', message: 'Failed to make order');
       }
     }
-  }
-
-  void sumGrandTotalPayment() {
-    grandTotalPayment.value = 0.0;
-    for (var cart in FirebaseServices.cartList) {
-      double amount = double.parse(cart.price) * int.parse(cart.quantity);
-      grandTotalPayment.value = grandTotalPayment.value + amount;
-    }
-
-    isCartLoading.value = !isCartLoading.value;
   }
 
   void showCustomDialog(context) {

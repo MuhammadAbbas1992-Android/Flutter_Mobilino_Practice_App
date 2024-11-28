@@ -26,9 +26,8 @@ class AddProductController extends GetxController {
     AppUtils.isAddProductView = true;
   }
   openAdminProductView() {
-    clearData();
     Get.toNamed(RoutsName.adminProductsView);
-    openAdminProductView();
+    Get.delete<AddProductController>();
   }
 
   Future getImage() async {
@@ -87,7 +86,6 @@ class AddProductController extends GetxController {
     if (await FirebaseServices.addProduct(productModel)) {
       AppUtils.mySnackBar(
           title: 'Success', message: 'Product details added successfully');
-      clearData();
       loading.value = false;
       openAdminProductView();
     } else {
@@ -95,15 +93,5 @@ class AddProductController extends GetxController {
       AppUtils.mySnackBar(
           title: 'Error', message: 'Product details failed to add');
     }
-  }
-
-  void clearData() {
-    AppUtils.isAddProductView = false;
-    selectedOption.value = 'Category';
-    imagePath.value = '';
-    imageUrl.value = '';
-    nameController.value.text = '';
-    priceController.value.text = '';
-    descriptionController.value.text = '';
   }
 }
