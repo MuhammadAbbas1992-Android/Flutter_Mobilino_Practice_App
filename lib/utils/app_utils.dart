@@ -31,11 +31,6 @@ class AppUtils {
     }
   }
 
-  static selectedProductDetail(int index) {
-    productIndex = index;
-    Get.toNamed(RoutsName.productsDetailView);
-  }
-
   static String? validateEmail(String? email) {
     if (email == null || email.isEmpty) {
       return 'Please enter email';

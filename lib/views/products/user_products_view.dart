@@ -57,7 +57,7 @@ class _UserProductsState extends State<UserProductsView> {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(
-              onTap: () => Get.to(() => NavBarView()),
+              onTap: () => Get.to(() => const NavBarView()),
               child: SvgPicture.asset(
                 'assets/icons/ic_menu.svg',
               ),

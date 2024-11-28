@@ -4,6 +4,7 @@ import 'package:mobilino/res/routs/routs_name.dart';
 import 'package:mobilino/views/contact_us/contact_us_view.dart';
 import 'package:mobilino/views/login/admin_login_view.dart';
 import 'package:mobilino/views/login/user_login_view.dart';
+import 'package:mobilino/views/nav_bar/nav_bar_view.dart';
 import 'package:mobilino/views/products/admin_products_view.dart';
 import 'package:mobilino/views/products/user_products_view.dart';
 
@@ -77,6 +78,11 @@ class AppRouts {
     GetPage(
         name: RoutsName.addProductView,
         page: () => const AddProductView(),
+        transitionDuration: const Duration(milliseconds: 250),
+        transition: Transition.leftToRightWithFade),
+    GetPage(
+        name: RoutsName.navBarView,
+        page: () => const NavBarView(),
         transitionDuration: const Duration(milliseconds: 250),
         transition: Transition.leftToRightWithFade),
   ];

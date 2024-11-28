@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../models/product_model.dart';
+import '../../../res/routs/routs_name.dart';
 import '../../../utils/app_utils.dart';
 import '../../services/firebase/firebase_services.dart';
 
@@ -14,6 +15,11 @@ class AdminProductsController extends GetxController {
 
   AdminProductsController() {
     loadProductsData();
+  }
+
+  openAddProductView() {
+    Get.toNamed(RoutsName.addProductView);
+    Get.delete<AdminProductsController>();
   }
 
   Future<void> loadProductsData() async {

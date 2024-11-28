@@ -24,13 +24,6 @@ class _AdminProductsViewState extends State<AdminProductsView> {
   final adminProductsController = Get.put(AdminProductsController());
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    adminProductsController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -61,7 +54,7 @@ class _AdminProductsViewState extends State<AdminProductsView> {
           Padding(
             padding: const EdgeInsets.only(right: 30),
             child: InkWell(
-              onTap: () => Get.toNamed(RoutsName.addProductView),
+              onTap: () => adminProductsController.openAddProductView(),
               child: SvgPicture.asset(
                 'assets/icons/ic_more.svg',
               ),

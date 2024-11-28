@@ -11,4 +11,5 @@ class RoutsName {
   static const String contactUsView = '/contact_us_view';
   static const String adminProductsView = '/admin_products_view';
   static const String addProductView = '/add_product_view';
+  static const String navBarView = '/nav_bar_view';
 }

@@ -42,7 +42,7 @@ class _AddProductViewState extends State<AddProductView> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: InkWell(
-              onTap: () => Get.back(),
+              onTap: () => addProductController.openAdminProductView(),
               child: SvgPicture.asset(
                 'assets/icons/ic_back.svg',
                 colorFilter:

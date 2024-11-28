@@ -46,7 +46,9 @@ class ProductDetailController extends GetxController {
         AppUtils.mySnackBar(
             title: 'Success', message: 'Cart added successfully');
         counter.value = 0;
+        AppUtils.productIndex = -1;
         Get.toNamed(RoutsName.userProductsView);
+        Get.delete<ProductDetailController>();
         // Get.offNamed(RoutsName.productsView);
       } else {
         loading.value = false;

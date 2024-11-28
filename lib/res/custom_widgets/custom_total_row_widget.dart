@@ -28,7 +28,7 @@ class CustomTotalRowWidget extends StatelessWidget {
             ),
             Obx(
               () => CustomTextWidget(
-                  text: '\$ ${controller.grandTotalPayment.value}',
+                  text: '\$${controller.grandTotalPayment.value}',
                   textSize: 16,
                   fontWeight: FontWeight.bold,
                   textAlign: TextAlign.right),

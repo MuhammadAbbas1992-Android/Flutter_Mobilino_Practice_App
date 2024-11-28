@@ -61,9 +61,9 @@ class _CartViewState extends State<CartView> {
           ),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: EdgeInsets.only(right: 20),
             child: InkWell(
-              onTap: () => Get.to(() => const NavBarView()),
+              onTap: () => cartController.openMenu(),
               child: SvgPicture.asset(
                 'assets/icons/ic_menu.svg',
               ),

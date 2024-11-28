@@ -63,7 +63,7 @@ class CustomCartInfoWidget extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 2,
+                      height: 8,
                     ),
                     Container(
                         height: 115,

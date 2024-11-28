@@ -17,6 +17,10 @@ class CartController extends GetxController {
   CartController() {
     loadCarts();
   }
+  openMenu() {
+    Get.toNamed(RoutsName.navBarView);
+    Get.delete<CartController>();
+  }
 
   Future<void> loadCarts() async {
     print('before ABC Called LoadCarts() ${FirebaseServices.cartList.length}');
@@ -47,9 +51,9 @@ class CartController extends GetxController {
     } else {
       isCartLoading.value = !isCartLoading.value;
       if (await FirebaseServices.deleteAllCart()) {
+        isCartLoading.value = !isCartLoading.value;
+        grandTotalPayment.value = 0.0;
         showCustomDialog(context);
-        /*AppUtils.mySnackBar(
-            title: 'Success', message: 'Order made successfully');*/
       } else {
         isCartLoading.value = !isCartLoading.value;
         AppUtils.mySnackBar(title: 'Error', message: 'Failed to make order');
@@ -63,6 +67,7 @@ class CartController extends GetxController {
       double amount = double.parse(cart.price) * int.parse(cart.quantity);
       grandTotalPayment.value = grandTotalPayment.value + amount;
     }
+
     isCartLoading.value = !isCartLoading.value;
   }
 
@@ -117,8 +122,8 @@ class CartController extends GetxController {
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
-                    isCartLoading.value = !isCartLoading.value;
                     Get.toNamed(RoutsName.userProductsView);
+                    Get.delete<CartController>();
                   },
                 ),
               ),

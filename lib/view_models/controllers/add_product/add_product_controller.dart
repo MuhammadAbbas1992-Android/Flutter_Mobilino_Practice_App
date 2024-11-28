@@ -25,6 +25,11 @@ class AddProductController extends GetxController {
   AddProductController() {
     AppUtils.isAddProductView = true;
   }
+  openAdminProductView() {
+    clearData();
+    Get.toNamed(RoutsName.adminProductsView);
+    openAdminProductView();
+  }
 
   Future getImage() async {
     AppUtils.mySnackBar(title: 'Alert', message: 'Welcome to Add New Device');
@@ -84,7 +89,7 @@ class AddProductController extends GetxController {
           title: 'Success', message: 'Product details added successfully');
       clearData();
       loading.value = false;
-      Get.toNamed(RoutsName.adminProductsView);
+      openAdminProductView();
     } else {
       loading.value = false;
       AppUtils.mySnackBar(
@@ -94,6 +99,7 @@ class AddProductController extends GetxController {
 
   void clearData() {
     AppUtils.isAddProductView = false;
+    selectedOption.value = 'Category';
     imagePath.value = '';
     imageUrl.value = '';
     nameController.value.text = '';

@@ -27,7 +27,7 @@ class ProductListViewWidget extends StatelessWidget {
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
             // mainAxisExtent: 300,
-            childAspectRatio: 3 / 5),
+            childAspectRatio: 2 / 3),
         itemCount: AppUtils.isUserLogin
             ? userProductsController?.userCategoryList.length
             : adminProductsController?.adminCategoryList.length,
@@ -36,7 +36,7 @@ class ProductListViewWidget extends StatelessWidget {
             productIndex: index,
             deleteIcon: deleteIcon,
             onTap: AppUtils.isUserLogin
-                ? () => AppUtils.selectedProductDetail(index)
+                ? () => userProductsController?.selectProductDetail(index)
                 : null,
             adminProductsController: adminProductsController,
             userProductsController: userProductsController,

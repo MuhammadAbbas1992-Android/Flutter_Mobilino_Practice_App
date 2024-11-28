@@ -28,15 +28,14 @@ class CustomDropDownWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: DropdownButtonHideUnderline(
-        child: Obx(() {
-          return DropdownButton<String>(
+        child: Obx(
+          () => DropdownButton<String>(
             hint: CustomTextWidget(
               text: AppUtils.isAddProductView
                   ? addProductController!.selectedOption.value
                   : adminProductsController!.selectedCategory.value,
               textColor:
                   AppUtils.isAddProductView ? AppColors.grey : AppColors.black,
-              textSize: 18,
             ),
             icon: const Icon(Icons.keyboard_arrow_down_sharp),
             isExpanded: true,
@@ -75,8 +74,8 @@ class CustomDropDownWidget extends StatelessWidget {
               color: AppColors.black,
               fontWeight: FontWeight.w500,
             ),
-          );
-        }),
+          ),
+        ),
       ),
     );
   }

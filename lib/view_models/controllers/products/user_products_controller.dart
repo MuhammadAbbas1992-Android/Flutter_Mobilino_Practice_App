@@ -4,8 +4,10 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../../../models/product_model.dart';
+import '../../../res/routs/routs_name.dart';
 import '../../../utils/app_utils.dart';
 import '../../services/firebase/firebase_services.dart';
+import '../login/login_controller.dart';
 
 class UserProductsController extends GetxController {
   // Observable RxBool for loading status
@@ -52,5 +54,12 @@ class UserProductsController extends GetxController {
       }
     }
     isLoading.value = !isLoading.value;
+  }
+
+  selectProductDetail(index) {
+    AppUtils.productIndex = index;
+    Get.toNamed(RoutsName.productsDetailView);
+    // Dispose the controller after navigating
+    Get.delete<LoginController>();
   }
 }
