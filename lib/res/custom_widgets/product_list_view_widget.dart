@@ -35,8 +35,10 @@ class ProductListViewWidget extends StatelessWidget {
           return CustomCartInfoWidget(
             productIndex: index,
             deleteIcon: deleteIcon,
+            //getSelected product Id by providing index
             onTap: AppUtils.isUserLogin
-                ? () => userProductsController?.selectProductDetail(index)
+                ? () => userProductsController?.selectProductDetail(
+                    userProductsController!.userCategoryList[index].id)
                 : null,
             adminProductsController: adminProductsController,
             userProductsController: userProductsController,

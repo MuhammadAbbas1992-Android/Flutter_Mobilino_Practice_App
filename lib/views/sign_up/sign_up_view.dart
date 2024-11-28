@@ -134,7 +134,7 @@ class _SignUpState extends State<SignUpView> {
                     textLink: 'Log In',
                     textLinkColor: AppColors.black,
                     textLinkSize: 10,
-                    onTap: () => Get.toNamed(RoutsName.userLoginView),
+                    onTap: () => signUpController.gotoLoginView(),
                   ),
                 ],
               ),

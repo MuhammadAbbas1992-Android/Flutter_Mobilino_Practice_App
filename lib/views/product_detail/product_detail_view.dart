@@ -25,13 +25,6 @@ class _ProductDetailViewState extends State<ProductDetailView> {
   final productDetailController = Get.put(ProductDetailController());
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    productDetailController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -40,7 +33,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: InkWell(
-              onTap: () {},
+              onTap: () => productDetailController.backToUserProductView(),
               child: SvgPicture.asset(
                 'assets/icons/ic_back.svg',
                 colorFilter:
@@ -63,7 +56,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(
-              onTap: () => Get.to(() => const NavBarView()),
+              onTap: () => productDetailController.openMenu(),
               child: SvgPicture.asset(
                 'assets/icons/ic_menu.svg',
               ),

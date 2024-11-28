@@ -27,6 +27,13 @@ class _AdminLoginState extends State<AdminLoginView> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.white,

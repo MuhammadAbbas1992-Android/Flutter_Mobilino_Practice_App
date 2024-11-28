@@ -23,13 +23,6 @@ class _UserProductsState extends State<UserProductsView> {
   final userProductsController = Get.put(UserProductsController());
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    userProductsController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -38,7 +31,7 @@ class _UserProductsState extends State<UserProductsView> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: InkWell(
-              onTap: () {},
+              onTap: () => userProductsController.backToHomeView(),
               child: SvgPicture.asset(
                 'assets/icons/ic_back.svg',
                 colorFilter:
@@ -57,7 +50,7 @@ class _UserProductsState extends State<UserProductsView> {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(
-              onTap: () => Get.to(() => const NavBarView()),
+              onTap: () => userProductsController.openMenu(),
               child: SvgPicture.asset(
                 'assets/icons/ic_menu.svg',
               ),
@@ -81,8 +74,7 @@ class _UserProductsState extends State<UserProductsView> {
                         userProductsController.selectedCategory.value ==
                             category;
                     return GestureDetector(
-                      onTap: () => userProductsController
-                          .selectedCategory.value = category,
+                      onTap: () => userProductsController.getCategory(category),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [

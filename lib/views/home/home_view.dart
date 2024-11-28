@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mobilino/res/custom_widgets/custom_text_widget.dart';
+import 'package:mobilino/view_models/controllers/home/home_controller.dart';
 import 'package:mobilino/views/nav_bar/nav_bar_view.dart';
 
 import '../../constants/app_colors.dart';
@@ -19,6 +20,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: InkWell(
-              onTap: () => Get.to(() => NavBarView()),
+              onTap: () => homeController.openMenu(),
               child: SvgPicture.asset(
                 'assets/icons/ic_menu.svg',
               ),

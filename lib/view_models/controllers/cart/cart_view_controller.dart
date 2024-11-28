@@ -17,8 +17,14 @@ class CartController extends GetxController {
   CartController() {
     loadCarts();
   }
+
   openMenu() {
     Get.toNamed(RoutsName.navBarView);
+    Get.delete<CartController>();
+  }
+
+  void backToHomeView() {
+    Get.toNamed(RoutsName.homeView);
     Get.delete<CartController>();
   }
 

@@ -28,13 +28,6 @@ class _AddProductViewState extends State<AddProductView> {
   final _formKey = GlobalKey<FormState>();
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    addProductController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,

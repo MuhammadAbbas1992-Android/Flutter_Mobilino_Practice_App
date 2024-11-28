@@ -2,20 +2,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../res/routs/routs_name.dart';
 import '../../../utils/app_utils.dart';
 
 class LoginController extends GetxController {
-  final emailController = TextEditingController(text: 'admin123@gmail.com').obs;
-  final passwordController = TextEditingController(text: '123456').obs;
+  final emailController = TextEditingController().obs;
+  final passwordController = TextEditingController().obs;
 
   RxBool loading = false.obs;
   late FirebaseAuth _auth;
 
   LoginController() {
-    // print('yes called LoginController Constructor');
+    emailController.value.text = '';
+    passwordController.value.text = '';
     _auth = FirebaseAuth.instance;
   }
-
   void loginUser() async {
     try {
       loading.value = true;

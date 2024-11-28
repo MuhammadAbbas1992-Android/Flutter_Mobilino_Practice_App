@@ -25,13 +25,6 @@ class _CartViewState extends State<CartView> {
   final cartController = Get.put(CartController());
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    cartController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -40,7 +33,7 @@ class _CartViewState extends State<CartView> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: InkWell(
-              onTap: () {},
+              onTap: () => cartController.backToHomeView(),
               child: SvgPicture.asset(
                 'assets/icons/ic_back.svg',
                 colorFilter:
@@ -61,7 +54,7 @@ class _CartViewState extends State<CartView> {
           ),
           const Spacer(),
           Padding(
-            padding: EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.only(right: 20),
             child: InkWell(
               onTap: () => cartController.openMenu(),
               child: SvgPicture.asset(

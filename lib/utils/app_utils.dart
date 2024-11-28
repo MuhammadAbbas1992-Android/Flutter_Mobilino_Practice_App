@@ -10,7 +10,7 @@ class AppUtils {
   static String userEmailKey = '';
   static bool isUserLogin = false;
   static bool isAddProductView = false;
-  static int productIndex = -1;
+  static String productId = '';
   // static List<ProductModel> list = <ProductModel>[];
 
   static extractEmailPart(String email) {

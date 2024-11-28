@@ -1,10 +1,17 @@
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../res/routs/routs_name.dart';
+
 class HomeController extends GetxController {
   late VideoPlayerController videoPlayerController;
   var isPlaying = false.obs;
   var isInitialized = false.obs;
+
+  openMenu() {
+    Get.toNamed(RoutsName.navBarView);
+    Get.delete<HomeController>();
+  }
 
   @override
   void onInit() {

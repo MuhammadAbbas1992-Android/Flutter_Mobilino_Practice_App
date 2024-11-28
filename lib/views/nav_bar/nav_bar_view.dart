@@ -24,7 +24,7 @@ class NavBarView extends StatelessWidget {
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: InkWell(
-              onTap: () => Get.back(),
+              onTap: () => Get.offNamed(RoutsName.homeView),
               child: SvgPicture.asset('assets/icons/ic_back.svg')),
         ),
         leadingWidth: 35,

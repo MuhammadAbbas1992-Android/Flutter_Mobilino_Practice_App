@@ -15,9 +15,22 @@ class SignUpController extends GetxController {
   late FirebaseAuth _auth;
 
   SignUpController() {
-    // print('yes called SignUpController Constructor');
+    emailController.value.text = '';
+    passwordController.value.text = '';
+    confirmPasswordController.value.text = '';
     _auth = FirebaseAuth.instance;
   }
+
+  void gotoLoginView() {
+    Get.offNamed(RoutsName.userLoginView);
+    Get.delete<SignUpController>();
+  }
+
+  void gotoHomeView() {
+    Get.offNamed(RoutsName.homeView);
+    Get.delete<SignUpController>();
+  }
+
   void signUpUser() async {
     try {
       loading.value = true;
@@ -25,12 +38,11 @@ class SignUpController extends GetxController {
           email: emailController.value.text,
           password: passwordController.value.text);
       if (newUser != null) {
-        print('NewUser $newUser');
         AppUtils.mySnackBar(
             title: 'Response', message: 'New user created successfully');
         loading.value = false;
         AppUtils.extractEmailPart(emailController.value.text);
-        Get.offNamed(RoutsName.homeView);
+        gotoHomeView();
       } else {
         loading.value = false;
         AppUtils.mySnackBar(

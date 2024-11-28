@@ -2,9 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../../../models/cart_model.dart';
 import '../../../models/product_model.dart';
@@ -18,7 +15,19 @@ class ProductDetailController extends GetxController {
   late ProductModel productModel;
 
   ProductDetailController() {
-    productModel = FirebaseServices.productList[AppUtils.productIndex];
+    productModel = FirebaseServices.productList.singleWhere(
+      (product) => product.id == AppUtils.productId,
+    );
+  }
+
+  openMenu() {
+    Get.toNamed(RoutsName.navBarView);
+    Get.delete<ProductDetailController>();
+  }
+
+  void backToUserProductView() {
+    Get.toNamed(RoutsName.userProductsView);
+    Get.delete<ProductDetailController>();
   }
 
   void incrementCounter() {
@@ -46,9 +55,8 @@ class ProductDetailController extends GetxController {
         AppUtils.mySnackBar(
             title: 'Success', message: 'Cart added successfully');
         counter.value = 0;
-        AppUtils.productIndex = -1;
-        Get.toNamed(RoutsName.userProductsView);
-        Get.delete<ProductDetailController>();
+        AppUtils.productId = '';
+        backToUserProductView();
         // Get.offNamed(RoutsName.productsView);
       } else {
         loading.value = false;

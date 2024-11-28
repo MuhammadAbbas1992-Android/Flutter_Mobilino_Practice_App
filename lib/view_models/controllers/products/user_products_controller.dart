@@ -22,13 +22,24 @@ class UserProductsController extends GetxController {
     loadProducts();
   }
 
+  void openMenu() {
+    Get.toNamed(RoutsName.navBarView);
+    Get.delete<UserProductsController>();
+  }
+
+  void backToHomeView() {
+    Get.toNamed(RoutsName.homeView);
+    Get.delete<UserProductsController>();
+  }
+
   void loadProducts() async {
-    AppUtils.productIndex = -1;
+    AppUtils.productId = '';
     await FirebaseServices.getProducts().then(
       (value) {
         // AppUtils.list = <ProductModel>[];
-        userCategoryList.value = FirebaseServices.productList;
+        // userCategoryList.value = FirebaseServices.productList;
         // AppUtils.list.addAll(userCategoryList);
+        extractCategoryList();
         isLoading.value = !isLoading.value;
       },
     ).onError(
@@ -41,24 +52,29 @@ class UserProductsController extends GetxController {
   }
 
   void getCategory(String category) {
+    selectedCategory.value = category;
     isLoading.value = !isLoading.value;
-
-    // AppUtils.list = <ProductModel>[];
-    userCategoryList.value = <ProductModel>[];
-
-    for (var product in FirebaseServices.productList) {
-      if (product.category == category) {
-        userCategoryList.add(product);
-        // AppUtils.list.addAll(userCategoryList);
-      }
-    }
+    extractCategoryList();
     isLoading.value = !isLoading.value;
   }
 
-  selectProductDetail(index) {
-    AppUtils.productIndex = index;
+  void selectProductDetail(String id) {
+    AppUtils.productId = id;
     Get.toNamed(RoutsName.productsDetailView);
-    // Dispose the controller after navigating
     Get.delete<LoginController>();
+  }
+
+  void extractCategoryList() {
+    userCategoryList.value = <ProductModel>[];
+    for (var product in FirebaseServices.productList) {
+      if (product.category == selectedCategory.value) {
+        userCategoryList.add(product);
+      }
+    }
+    if (userCategoryList.isEmpty) {
+      AppUtils.mySnackBar(
+          title: 'Message',
+          message: 'No ${selectedCategory.value} product available');
+    }
   }
 }
