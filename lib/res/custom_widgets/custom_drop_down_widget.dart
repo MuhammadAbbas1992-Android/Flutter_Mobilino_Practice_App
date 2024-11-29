@@ -31,16 +31,27 @@ class CustomDropDownWidget extends StatelessWidget {
         child: Obx(
           () => DropdownButton<String>(
             hint: CustomTextWidget(
-              text: AppUtils.isAddProductView
-                  ? addProductController!.selectedOption.value
-                  : adminProductsController!.selectedCategory.value,
-              textColor:
-                  AppUtils.isAddProductView ? AppColors.grey : AppColors.black,
+              text: AppUtils.isAdminProductView
+                  ? adminProductsController!.selectedCategory.value
+                  : addProductController!.selectedOption.value,
+              textColor: AppUtils.isAdminProductView
+                  ? AppColors.black
+                  : AppColors.grey,
             ),
             icon: const Icon(Icons.keyboard_arrow_down_sharp),
             isExpanded: true,
-            items: AppUtils.isAddProductView
-                ? addProductController?.options.map((String value) {
+            items: AppUtils.isAdminProductView
+                ? adminProductsController?.options.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: CustomTextWidget(
+                        text: value,
+                        textColor: AppColors.white,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    );
+                  }).toList()
+                : addProductController?.options.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: CustomTextWidget(
@@ -50,23 +61,13 @@ class CustomDropDownWidget extends StatelessWidget {
                         fontWeight: FontWeight.normal,
                       ),
                     );
-                  }).toList()
-                : adminProductsController?.options.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: CustomTextWidget(
-                        text: value,
-                        textColor: AppColors.white,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    );
                   }).toList(),
             onChanged: (String? newValue) {
-              if (AppUtils.isAddProductView) {
-                addProductController!.selectedOption.value = newValue!;
-              } else {
+              if (AppUtils.isAdminProductView) {
                 adminProductsController!.selectedCategory.value = newValue!;
                 adminProductsController?.getCategory();
+              } else {
+                addProductController!.selectedOption.value = newValue!;
               }
             },
             dropdownColor: AppColors.mediumGrey,

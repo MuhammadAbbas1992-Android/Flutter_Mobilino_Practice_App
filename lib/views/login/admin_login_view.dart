@@ -95,6 +95,7 @@ class _AdminLoginState extends State<AdminLoginView> {
                   CustomTextFormFieldWidget(
                     height: 43,
                     customLabel: 'Password',
+                    obscure: true,
                     boarder: true,
                     boarderColor: AppColors.mediumGrey,
                     controller: controller.passwordController.value,
@@ -114,7 +115,7 @@ class _AdminLoginState extends State<AdminLoginView> {
                             fontWeight: FontWeight.bold,
                             width: 200,
                             onTap: () => _formKey.currentState!.validate()
-                                ? controller.loginUser()
+                                ? controller.loginUser('admin')
                                 : null,
                           ),
                   )

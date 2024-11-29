@@ -23,7 +23,7 @@ class AddProductController extends GetxController {
       ['Category', 'Samsung', 'Apple', 'Realme', 'OPPO', 'Huawei'].obs;
 
   AddProductController() {
-    AppUtils.isAddProductView = true;
+    AppUtils.isAdminProductView = false;
   }
   openAdminProductView() {
     Get.toNamed(RoutsName.adminProductsView);

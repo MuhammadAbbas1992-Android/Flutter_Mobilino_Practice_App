@@ -9,26 +9,13 @@ import '../view_models/services/shared_prefrences/shared_preferences_services.da
 class AppUtils {
   static String userEmailKey = '';
   static bool isUserLogin = false;
-  static bool isAddProductView = false;
+  static bool isAdminProductView = true;
   static String productId = '';
   // static List<ProductModel> list = <ProductModel>[];
 
   static extractEmailPart(String email) {
     // Split the email using '@' as the delimiter
     userEmailKey = email.split('@')[0];
-  }
-
-  static toggleUserLoginStatus(String user) async {
-    if (user == 'admin123@gmail.com') {
-      isUserLogin = false;
-      await SharedPreferenceServices.saveToSharedPref(userKey, user);
-      Get.offNamed(RoutsName.adminProductsView);
-    } else {
-      isUserLogin = true;
-      AppUtils.extractEmailPart(user);
-      await SharedPreferenceServices.saveToSharedPref(userKey, user);
-      Get.offNamed(RoutsName.homeView);
-    }
   }
 
   static String? validateEmail(String? email) {

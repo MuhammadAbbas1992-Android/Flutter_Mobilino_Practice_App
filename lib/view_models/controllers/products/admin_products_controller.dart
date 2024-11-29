@@ -14,7 +14,7 @@ class AdminProductsController extends GetxController {
       ['Category', 'All', 'Samsung', 'Apple', 'Realme', 'OPPO', 'Huawei'].obs;
 
   AdminProductsController() {
-    AppUtils.isAddProductView = false;
+    AppUtils.isAdminProductView = true;
     loadProductsData();
   }
 

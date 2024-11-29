@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/app_constants.dart';
 import '../../../res/routs/routs_name.dart';
 import '../../../utils/app_utils.dart';
+import '../../services/shared_prefrences/shared_preferences_services.dart';
 
 class LoginController extends GetxController {
   final emailController = TextEditingController().obs;
@@ -13,11 +15,44 @@ class LoginController extends GetxController {
   late FirebaseAuth _auth;
 
   LoginController() {
-    emailController.value.text = '';
-    passwordController.value.text = '';
+    /*emailController.value.text = '';
+    passwordController.value.text = '';*/
     _auth = FirebaseAuth.instance;
   }
-  void loginUser() async {
+  void gotoHomeScreen() {
+    Get.offNamed(RoutsName.homeView);
+    Get.delete<LoginController>();
+  }
+
+  void gotoAdminProductView() {
+    Get.offNamed(RoutsName.adminProductsView);
+    Get.delete<LoginController>();
+  }
+
+  void gotoSignUpView() {
+    Get.toNamed(RoutsName.signUpView);
+    Get.delete<LoginController>();
+  }
+
+  void gotoAdminLoginView() {
+    Get.toNamed(RoutsName.adminLoginView);
+    Get.delete<LoginController>();
+  }
+
+  void loginUser(String viewName) async {
+    if (viewName == 'admin' &&
+        emailController.value.text != 'admin123@gmail.com') {
+      AppUtils.mySnackBar(title: 'Alert', message: 'Invalid admin email');
+    } else if (viewName == 'user' &&
+        emailController.value.text == 'admin123@gmail.com') {
+      AppUtils.mySnackBar(
+          title: 'Alert', message: 'This user account not exists');
+    } else {
+      verifyLoginCredentials();
+    }
+  }
+
+  Future<void> verifyLoginCredentials() async {
     try {
       loading.value = true;
       UserCredential newUser = await _auth.signInWithEmailAndPassword(
@@ -30,7 +65,7 @@ class LoginController extends GetxController {
           message: 'Login successfully',
         );
         loading.value = false;
-        AppUtils.toggleUserLoginStatus(emailController.value.text);
+        toggleUserLoginStatus();
       }
     } on FirebaseAuthException catch (e) {
       String errorMessage = '';
@@ -67,6 +102,21 @@ class LoginController extends GetxController {
         title: 'Error',
         message: 'An error occurred: ${e.toString()}',
       );
+    }
+  }
+
+  void toggleUserLoginStatus() async {
+    if (emailController.value.text == 'admin123@gmail.com') {
+      AppUtils.isUserLogin = false;
+      await SharedPreferenceServices.saveToSharedPref(
+          userKey, emailController.value.text);
+      gotoAdminProductView();
+    } else {
+      AppUtils.isUserLogin = true;
+      AppUtils.extractEmailPart(emailController.value.text);
+      await SharedPreferenceServices.saveToSharedPref(
+          userKey, emailController.value.text);
+      gotoHomeScreen();
     }
   }
 }

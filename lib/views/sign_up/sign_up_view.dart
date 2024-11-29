@@ -88,6 +88,7 @@ class _SignUpState extends State<SignUpView> {
                   CustomTextFormFieldWidget(
                     height: 43,
                     customLabel: 'Password',
+                    obscure: true,
                     boarder: true,
                     boarderColor: AppColors.mediumGrey,
                     controller: signUpController.passwordController.value,
@@ -99,6 +100,7 @@ class _SignUpState extends State<SignUpView> {
                   CustomTextFormFieldWidget(
                     height: 43,
                     customLabel: 'Confirm Password',
+                    obscure: true,
                     boarder: true,
                     boarderColor: AppColors.mediumGrey,
                     controller:

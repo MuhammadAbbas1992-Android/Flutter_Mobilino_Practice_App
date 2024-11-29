@@ -94,6 +94,7 @@ class _UserLoginState extends State<UserLoginView> {
                   CustomTextFormFieldWidget(
                     height: 43,
                     customLabel: 'Password',
+                    obscure: true,
                     boarder: true,
                     boarderColor: AppColors.mediumGrey,
                     controller: loginController.passwordController.value,
@@ -113,7 +114,7 @@ class _UserLoginState extends State<UserLoginView> {
                             fontWeight: FontWeight.bold,
                             width: 200,
                             onTap: () => _formKey.currentState!.validate()
-                                ? loginController.loginUser()
+                                ? loginController.loginUser('user')
                                 : null,
                           ),
                   ),
@@ -127,7 +128,7 @@ class _UserLoginState extends State<UserLoginView> {
                     textLink: 'Sign up',
                     textLinkColor: AppColors.black,
                     textLinkSize: 10,
-                    onTap: () => Get.toNamed(RoutsName.signUpView),
+                    onTap: () => loginController.gotoSignUpView(),
                   ),
                   const SizedBox(
                     height: 40,
@@ -137,7 +138,7 @@ class _UserLoginState extends State<UserLoginView> {
                     fillColor: AppColors.mediumGrey,
                     fontWeight: FontWeight.bold,
                     width: 200,
-                    onTap: () => Get.toNamed(RoutsName.adminLoginView),
+                    onTap: () => loginController.gotoAdminLoginView(),
                   ),
                 ],
               ),
