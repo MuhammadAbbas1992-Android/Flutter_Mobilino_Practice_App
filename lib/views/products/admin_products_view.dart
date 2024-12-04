@@ -31,7 +31,7 @@ class _AdminProductsViewState extends State<AdminProductsView> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 30),
           child: InkWell(
-              onTap: () => AppUtils.logout(),
+              onTap: () => adminProductsController.logout(),
               child: SvgPicture.asset(
                 'assets/icons/ic_sign_out.svg',
                 colorFilter:
@@ -112,8 +112,6 @@ class _AdminProductsViewState extends State<AdminProductsView> {
                 }
               },
             ),
-
-            // const Expanded(child: ProductListViewWidget()),
           ],
         ),
       )),

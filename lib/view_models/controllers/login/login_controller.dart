@@ -8,8 +8,8 @@ import '../../../utils/app_utils.dart';
 import '../../services/shared_prefrences/shared_preferences_services.dart';
 
 class LoginController extends GetxController {
-  final emailController = TextEditingController().obs;
-  final passwordController = TextEditingController().obs;
+  final emailController = TextEditingController(text: 'abc123@gmail.com').obs;
+  final passwordController = TextEditingController(text: '123456').obs;
 
   RxBool loading = false.obs;
   late FirebaseAuth _auth;
@@ -20,12 +20,12 @@ class LoginController extends GetxController {
     _auth = FirebaseAuth.instance;
   }
   void gotoHomeScreen() {
-    Get.offNamed(RoutsName.homeView);
+    Get.offAllNamed(RoutsName.homeView);
     Get.delete<LoginController>();
   }
 
   void gotoAdminProductView() {
-    Get.offNamed(RoutsName.adminProductsView);
+    Get.offAllNamed(RoutsName.adminProductsView);
     Get.delete<LoginController>();
   }
 

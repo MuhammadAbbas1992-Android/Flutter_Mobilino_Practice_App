@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../../constants/app_constants.dart';
 import '../../../models/product_model.dart';
 import '../../../res/routs/routs_name.dart';
 import '../../../utils/app_utils.dart';
 import '../../services/firebase/firebase_services.dart';
+import '../../services/shared_prefrences/shared_preferences_services.dart';
 
 class AdminProductsController extends GetxController {
   // Observable RxBool for loading status
@@ -18,7 +20,16 @@ class AdminProductsController extends GetxController {
     loadProductsData();
   }
 
-  openAddProductView() {
+  void logout() {
+    AppUtils.mySnackBar(title: 'Message', message: 'Yor sign out successfully');
+    AppUtils.userEmailKey = '';
+    AppUtils.isUserLogin = false;
+    SharedPreferenceServices.clearFromSharedPref(userKey);
+    Get.offNamed(RoutsName.userLoginView);
+    Get.delete<AdminProductsController>();
+  }
+
+  void openAddProductView() {
     Get.toNamed(RoutsName.addProductView);
     Get.delete<AdminProductsController>();
   }
@@ -26,10 +37,8 @@ class AdminProductsController extends GetxController {
   Future<void> loadProductsData() async {
     await FirebaseServices.getProducts().then(
       (value) {
-        // AppUtils.list = <ProductModel>[];
         adminCategoryList.value = <ProductModel>[];
         adminCategoryList.value = FirebaseServices.productList;
-        // AppUtils.list.addAll(adminCategoryList);
         isLoading.value = !isLoading.value;
       },
     ).onError(
@@ -69,13 +78,11 @@ class AdminProductsController extends GetxController {
 
   void getCategory() {
     isLoading.value = !isLoading.value;
-    // AppUtils.list = <ProductModel>[];
     adminCategoryList.value = <ProductModel>[];
 
     if (selectedCategory.value == 'Category' ||
         selectedCategory.value == 'All') {
       adminCategoryList.value = FirebaseServices.productList;
-      // AppUtils.list.addAll(adminCategoryList);
     } else {
       for (var product in FirebaseServices.productList) {
         if (product.category == selectedCategory.value) {

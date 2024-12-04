@@ -5,7 +5,7 @@ import 'package:mobilino/constants/app_colors.dart';
 import 'package:mobilino/constants/app_constants.dart';
 import 'package:mobilino/res/custom_widgets/custom_text_widget.dart';
 import '../../constants/app_fonts.dart';
-import '../../view_models/controllers/splash/splash_controller.dart';
+import '../../view_models/services/splash/splash_services.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

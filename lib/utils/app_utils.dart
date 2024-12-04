@@ -68,17 +68,4 @@ class AppUtils {
   static void mySnackBar({required String title, required String message}) {
     Get.snackbar(title, message);
   }
-
-  static void navigatePage(String pageName) {
-    Get.back();
-    Get.offNamed(pageName);
-  }
-
-  static void logout() {
-    mySnackBar(title: 'Message', message: 'Yor sign out successfully');
-    userEmailKey = '';
-    isUserLogin = false;
-    SharedPreferenceServices.clearFromSharedPref(userKey);
-    Get.toNamed(RoutsName.userLoginView);
-  }
 }

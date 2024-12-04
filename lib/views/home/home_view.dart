@@ -20,87 +20,113 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final homeController = Get.put(HomeController());
+  late var homeController = Get.put(HomeController());
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      homeController = Get.put(HomeController());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          const SizedBox(width: 54),
-          const Spacer(),
-          const CustomHeaderWidget(
-            text: 'Mobilino',
-            icon: 'assets/icons/ic_logo.svg',
-            iconLeftPadding: 5,
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 20),
             child: InkWell(
-              onTap: () => homeController.openMenu(),
-              child: SvgPicture.asset(
-                'assets/icons/ic_menu.svg',
-              ),
+                onTap: () => homeController.gotoBack(),
+                child: SvgPicture.asset(
+                  'assets/icons/ic_back.svg',
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                )),
+          ),
+          leadingWidth: 35,
+          actions: [
+            const SizedBox(width: 50),
+            const Spacer(),
+            const CustomHeaderWidget(
+              text: 'Mobilino',
+              textSize: 16,
+              icon: 'assets/icons/ic_logo.svg',
+              iconHeight: 19,
+              iconWidth: 14,
+              iconLeftPadding: 5,
             ),
-          )
-        ],
-      ),
-      body: const SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                height: 20.0,
-              ),
-              VideoPlayWidget(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
-                child: Column(
-                  children: [
-                    CustomTextWidget(
-                      text: 'About Mobilino',
-                      textSize: 15,
-                      fontWeight: FontWeight.bold,
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomTextWidget(
-                      text: homeText1,
-                      textSize: 12,
-                      textAlign: TextAlign.justify,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomTextWidget(
-                      text: 'Our Services',
-                      textSize: 15,
-                      fontWeight: FontWeight.bold,
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomTextWidget(
-                      text: homeText2,
-                      textSize: 12,
-                      textAlign: TextAlign.justify,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomTextWidget(
-                      text: homeText3,
-                      textSize: 12,
-                      textAlign: TextAlign.justify,
-                    ),
-                  ],
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: InkWell(
+                onTap: () => homeController.openMenu(),
+                child: SvgPicture.asset(
+                  'assets/icons/ic_menu.svg',
                 ),
               ),
-            ],
+            )
+          ],
+        ),
+        body: const SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  height: 20.0,
+                ),
+                VideoPlayWidget(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
+                  child: Column(
+                    children: [
+                      CustomTextWidget(
+                        text: 'About Mobilino',
+                        textSize: 15,
+                        fontWeight: FontWeight.bold,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      CustomTextWidget(
+                        text: homeText1,
+                        textSize: 12,
+                        textAlign: TextAlign.justify,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      CustomTextWidget(
+                        text: 'Our Services',
+                        textSize: 15,
+                        fontWeight: FontWeight.bold,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      CustomTextWidget(
+                        text: homeText2,
+                        textSize: 12,
+                        textAlign: TextAlign.justify,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      CustomTextWidget(
+                        text: homeText3,
+                        textSize: 12,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

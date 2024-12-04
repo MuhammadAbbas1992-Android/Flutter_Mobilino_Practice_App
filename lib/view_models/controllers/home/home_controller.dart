@@ -8,9 +8,14 @@ class HomeController extends GetxController {
   var isPlaying = false.obs;
   var isInitialized = false.obs;
 
+  gotoBack() {
+    Get.back();
+    // Get.delete<HomeController>();
+  }
+
   openMenu() {
     Get.toNamed(RoutsName.navBarView);
-    Get.delete<HomeController>();
+    // Get.delete<HomeController>();
   }
 
   @override

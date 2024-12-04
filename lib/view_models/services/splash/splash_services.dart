@@ -10,11 +10,13 @@ import '../../services/shared_prefrences/shared_preferences_services.dart';
 
 class SplashServices {
   Future<void> goToNextScreen() async {
+    String? userName =
+        await SharedPreferenceServices.getFromSharedPref(userKey);
     Timer(
-      const Duration(seconds: 3),
+      userName != null
+          ? const Duration(milliseconds: 500)
+          : const Duration(seconds: 3),
       () async {
-        String? userName =
-            await SharedPreferenceServices.getFromSharedPref(userKey);
         if (userName != null) {
           if (userName == 'admin123@gmail.com') {
             Get.offNamed(RoutsName.adminProductsView);

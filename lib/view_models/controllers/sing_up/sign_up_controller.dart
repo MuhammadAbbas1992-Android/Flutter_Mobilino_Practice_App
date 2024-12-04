@@ -22,12 +22,13 @@ class SignUpController extends GetxController {
   }
 
   void gotoLoginView() {
-    Get.offNamed(RoutsName.userLoginView);
+    // Get.offNamed(RoutsName.userLoginView);
+    Get.back();
     Get.delete<SignUpController>();
   }
 
   void gotoHomeView() {
-    Get.offNamed(RoutsName.homeView);
+    Get.offAllNamed(RoutsName.homeView);
     Get.delete<SignUpController>();
   }
 

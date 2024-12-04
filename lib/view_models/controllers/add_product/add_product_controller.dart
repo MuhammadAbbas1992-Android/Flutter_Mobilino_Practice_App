@@ -25,8 +25,9 @@ class AddProductController extends GetxController {
   AddProductController() {
     AppUtils.isAdminProductView = false;
   }
+
   openAdminProductView() {
-    Get.toNamed(RoutsName.adminProductsView);
+    Get.offAllNamed(RoutsName.adminProductsView);
     Get.delete<AddProductController>();
   }
 

@@ -28,120 +28,124 @@ class _SignUpState extends State<SignUpView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.white,
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CustomTextWidget(
-                        text: 'Mobilino',
-                        fontFamily: AppFonts.dhyanaBold,
-                        textColor: AppColors.darkGrey,
-                        textSize: 34,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/ic_logo.svg',
-                        colorFilter: const ColorFilter.mode(
-                            AppColors.darkGrey, BlendMode.srcIn),
-                        height: 39,
-                        width: 32,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  const CustomTextWidget(
-                    text: 'Sign up',
-                    textColor: AppColors.darkGrey,
-                    textSize: 22,
-                    fontWeight: FontWeight.bold,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  CustomTextFormFieldWidget(
-                    height: 43,
-                    customLabel: 'Email',
-                    boarder: true,
-                    boarderColor: AppColors.mediumGrey,
-                    controller: signUpController.emailController.value,
-                    validator: (value) => AppUtils.validateEmail(value),
-                  ),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  CustomTextFormFieldWidget(
-                    height: 43,
-                    customLabel: 'Password',
-                    obscure: true,
-                    boarder: true,
-                    boarderColor: AppColors.mediumGrey,
-                    controller: signUpController.passwordController.value,
-                    validator: (value) => AppUtils.validatePassword(value),
-                  ),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  CustomTextFormFieldWidget(
-                    height: 43,
-                    customLabel: 'Confirm Password',
-                    obscure: true,
-                    boarder: true,
-                    boarderColor: AppColors.mediumGrey,
-                    controller:
-                        signUpController.confirmPasswordController.value,
-                    validator: (value) => AppUtils.validateConfirmPassword(
-                        value, signUpController.passwordController.value.text),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Obx(
-                    () => signUpController.loading.value
-                        ? const CircularProgressIndicator(
-                            color: AppColors.mediumGrey,
-                          )
-                        : CustomTextButtonWidget(
-                            buttonText: 'Sign up',
-                            fillColor: AppColors.mediumGrey,
-                            fontWeight: FontWeight.bold,
-                            width: 200,
-                            onTap: () => _formKey.currentState!.validate()
-                                ? signUpController.signUpUser()
-                                : null,
-                          ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CustomAccountWidget(
-                    textHint: 'Already have an account?',
-                    textHintColor: AppColors.grey,
-                    textHintSize: 10,
-                    textLink: 'Log In',
-                    textLinkColor: AppColors.black,
-                    textLinkSize: 10,
-                    onTap: () => signUpController.gotoLoginView(),
-                  ),
-                ],
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+          backgroundColor: AppColors.white,
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CustomTextWidget(
+                          text: 'Mobilino',
+                          fontFamily: AppFonts.dhyanaBold,
+                          textColor: AppColors.darkGrey,
+                          textSize: 34,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        SvgPicture.asset(
+                          'assets/icons/ic_logo.svg',
+                          colorFilter: const ColorFilter.mode(
+                              AppColors.darkGrey, BlendMode.srcIn),
+                          height: 39,
+                          width: 32,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 60,
+                    ),
+                    const CustomTextWidget(
+                      text: 'Sign up',
+                      textColor: AppColors.darkGrey,
+                      textSize: 22,
+                      fontWeight: FontWeight.bold,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    CustomTextFormFieldWidget(
+                      height: 43,
+                      customLabel: 'Email',
+                      boarder: true,
+                      boarderColor: AppColors.mediumGrey,
+                      controller: signUpController.emailController.value,
+                      validator: (value) => AppUtils.validateEmail(value),
+                    ),
+                    const SizedBox(
+                      height: 35,
+                    ),
+                    CustomTextFormFieldWidget(
+                      height: 43,
+                      customLabel: 'Password',
+                      obscure: true,
+                      boarder: true,
+                      boarderColor: AppColors.mediumGrey,
+                      controller: signUpController.passwordController.value,
+                      validator: (value) => AppUtils.validatePassword(value),
+                    ),
+                    const SizedBox(
+                      height: 35,
+                    ),
+                    CustomTextFormFieldWidget(
+                      height: 43,
+                      customLabel: 'Confirm Password',
+                      obscure: true,
+                      boarder: true,
+                      boarderColor: AppColors.mediumGrey,
+                      controller:
+                          signUpController.confirmPasswordController.value,
+                      validator: (value) => AppUtils.validateConfirmPassword(
+                          value,
+                          signUpController.passwordController.value.text),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Obx(
+                      () => signUpController.loading.value
+                          ? const CircularProgressIndicator(
+                              color: AppColors.mediumGrey,
+                            )
+                          : CustomTextButtonWidget(
+                              buttonText: 'Sign up',
+                              fillColor: AppColors.mediumGrey,
+                              fontWeight: FontWeight.bold,
+                              width: 200,
+                              onTap: () => _formKey.currentState!.validate()
+                                  ? signUpController.signUpUser()
+                                  : null,
+                            ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CustomAccountWidget(
+                      textHint: 'Already have an account?',
+                      textHintColor: AppColors.grey,
+                      textHintSize: 10,
+                      textLink: 'Log In',
+                      textLinkColor: AppColors.black,
+                      textLinkSize: 10,
+                      onTap: () => signUpController.gotoLoginView(),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }
